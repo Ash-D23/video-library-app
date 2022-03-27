@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import VideoList from '../../Components/VideoList/VideoList';
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <>
+      <VideoList />
+    </>
   )
 }
 
