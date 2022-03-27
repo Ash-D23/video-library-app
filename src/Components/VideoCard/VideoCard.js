@@ -15,9 +15,9 @@ function VideoCard() {
             </div>
         </div>
         <div class="card__body padding--medium">
-            <div class="card__heading">
+            <div class="card__heading margin-tb--small">
                 <div class="container__flex--spacebetween">
-                    <h2 class="card__titles">Video Name</h2>
+                    <p class="text--medium">Video Name</p>
                     <p>3 min</p>
                 </div>
             </div> 
