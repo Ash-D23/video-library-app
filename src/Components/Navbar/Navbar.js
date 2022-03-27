@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../Context/AuthContext/AuthContext';
 import './Navbar.css'
 
 function Navbar({ onMenuClick }) {
@@ -20,6 +21,8 @@ function Navbar({ onMenuClick }) {
       setsearch('')
       navigate(path)
     }
+
+    const { user } = useAuthContext()
   
     return (
       <header>
@@ -59,12 +62,13 @@ function Navbar({ onMenuClick }) {
                   <li className="navbar__item">
                       <Link to="/explore">Explore</Link>
                   </li>
-                  <li className="navbar__item">
+                  { user ? <li className="navbar__item">
                       <Link to="/profile">Profile</Link>
-                  </li>
-                  <li className="navbar__item">
+                  </li> : null }
+
+                  { user ? <li className="navbar__item">
                   <Link to="/logout"><i className="fas fa-sign-out-alt"></i></Link>
-                  </li>
+                  </li> : <Link to="/login"><button className='btn btn--secondary btn--medium'>Login</button></Link>}
                   
               </ul>
           </div>

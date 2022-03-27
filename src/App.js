@@ -1,8 +1,8 @@
 import './App.css';
 import Navigation from './Components/Navigation/Navigation';
 import Footer from './Components/Footer/Footer';
-import HomePage from './Pages/HomePage/HomePage'
-import { Routes, Route} from 'react-router-dom';
+import HomePage from './Pages/HomePage/HomePage';
+import { Routes, Route, Navigate} from 'react-router-dom';
 import SingleVideoPage from './Pages/SingleVideoPage/SingleVideoPage';
 import UserProfile from './Pages/UserProfile/UserProfile';
 import VideoListingPage from './Pages/VideoListingPage/VideoListingPage';
@@ -13,11 +13,12 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import PlaylistPage from  './Pages/PlaylistPage/PlaylistPage';
 import { useAuthContext } from './Context/AuthContext/AuthContext';
+import RequireAuth from './hooks/RequireAuth';
 
 function App() {
-  const { user } = useAuthContext()
 
-  console.log(user)
+  const { user } = useAuthContext()
+  
   return (
     <>
       <Navigation />
@@ -29,16 +30,16 @@ function App() {
         <Route path='/explore' element={<VideoListingPage />} >
           <Route path='' element={<Dashboard />} />
           <Route path='category' element={<CategoryPage />} />
-          <Route path='playlist' element={<PlaylistPage />} />
+          <Route path='playlist' element={<RequireAuth><PlaylistPage /></RequireAuth>} />
         </Route>
 
         <Route path='/video/:id' element={<SingleVideoPage />} />
 
-        <Route path='/profile' element={<UserProfile />} />
+        <Route path='/profile' element={<RequireAuth><UserProfile /></RequireAuth>} />
 
-        <Route path='/login' element={<Login />} />
-
-        <Route path='/signup' element={<SignUp />} />
+        { user ? <Route path='/login' element={<Navigate to="/" />} /> : <Route path='/login' element={<Login />} /> }
+    
+        { user ? <Route path='/signup' element={<Navigate to="/" />} /> : <Route path='/signup' element={<SignUp />} /> }
 
         <Route path='/logout' element={<Logout />} />
 
