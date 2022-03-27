@@ -12,8 +12,12 @@ import Logout from './Pages/Logout/Logout';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import PlaylistPage from  './Pages/PlaylistPage/PlaylistPage';
+import { useAuthContext } from './Context/AuthContext/AuthContext';
 
 function App() {
+  const { user } = useAuthContext()
+
+  console.log(user)
   return (
     <>
       <Navigation />
