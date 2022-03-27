@@ -21,7 +21,7 @@ function Drawer({ show, closeDrawer}) {
                 <Link onClick={closeDrawer} to="/"><p>Home</p></Link>
             </div>
             <div className="drawer__navigation-items">
-            <i class="fas fa-play-circle"></i>
+            <i className="fas fa-play-circle"></i>
                 <Link onClick={closeDrawer} to="/explore"><p>Explore</p></Link>
             </div>
             <div className="drawer__navigation-items">

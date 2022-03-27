@@ -36,7 +36,7 @@ function Navbar({ onMenuClick }) {
                   </div>
               </div>
               <div className='navbar__logo video--mobile'>
-                <i class="fas fa-play-circle clr--secondary padding--small"></i>
+                <i className="fas fa-play-circle clr--secondary padding--small"></i>
               </div>
               <div className='container--relative'>
                           <div className="search__container">
