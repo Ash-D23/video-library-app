@@ -28,12 +28,12 @@
 
 .btn-auth{
     width: 100%;
-    background-color: #3b82f6;
-    color: #ffffff;
+    background-color: var(--clr-login);
+    color: var(--text-clr-secondary)
 }
 
 .btn-auth:hover{
-    background-color: #2563eb;
+    background-color: var(--clr-login-dark);
 }
 
 .auth__link{
@@ -42,7 +42,7 @@
 }
 
 .auth__link:hover{
-    color: #2563eb;
+    color: var(--clr-login-dark)
 }
 
 .auth__description{
@@ -69,7 +69,7 @@
 }
 
 .error--message{
-    color: red;
+    color: var(--clr-error);
 }
 
 @media only screen and (max-width: 500px) {

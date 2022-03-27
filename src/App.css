@@ -3,4 +3,8 @@
     --clr-secondary-dark: #075985;
 
     --clr-light: #0284c7;
+    --clr-login: #3b82f6;
+    --clr-login-dark: #2563eb;
+
+    --clr-error: #dc2626;
 }
