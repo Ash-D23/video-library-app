@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../../Context/AuthContext/AuthContext';
 import './Drawer.css';
 function Drawer({ show, closeDrawer}) {
+
+  const { user } = useAuthContext()
+
   return (
       <div className={`drawer__container padding--medium ${ show ? 'drawer__position-right' : ''}`}>
         <div className="drawer__heading container__flex--center">
@@ -24,14 +28,17 @@ function Drawer({ show, closeDrawer}) {
             <i className="fas fa-play-circle"></i>
                 <Link onClick={closeDrawer} to="/explore"><p>Explore</p></Link>
             </div>
-            <div className="drawer__navigation-items">
+            { user ? <div className="drawer__navigation-items">
                 <i className="fas fa-user"></i>
                 <Link onClick={closeDrawer} to="/profile"><p>Profile</p></Link>
-            </div>
-            <div className="drawer__navigation-items">
+            </div> : null }
+            { user ? <div className="drawer__navigation-items">
                 <i className="fas fa-sign-out-alt"></i>
                 <Link onClick={closeDrawer} to="/logout"><p>Logout</p></Link>
-            </div>
+            </div> : <div className="drawer__navigation-items">
+                <i className="fas fa-user"></i>
+                <Link onClick={closeDrawer} to="/login"><p>Login</p></Link>
+            </div> }
         </div>
       </div>
   )
