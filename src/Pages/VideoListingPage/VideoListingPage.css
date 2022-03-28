@@ -1,6 +1,6 @@
 .video__main{
     display: grid;
-    grid-template-columns: 25rem 1fr;
+    grid-template-columns: 20rem 1fr;
 }
 
 .video__main .video__title{
@@ -93,7 +93,11 @@
     }
 
     .main{
-        padding: 0;
+        padding: var(--padding-small);
+    }
+
+    .card--video .card__image{
+        height: 20rem;
     }
 
     *::-webkit-scrollbar {
