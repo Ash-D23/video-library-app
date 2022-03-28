@@ -1,11 +1,11 @@
 import React from 'react';
-import VideoHead from '../../Components/VideoHead/VideoHead';
+import CategoryChips from '../../Components/CategoryChips/CategoryChips';
 import VideoList from '../../Components/VideoList/VideoList';
 
 function Dashboard() {
   return (
     <div className="main">
-      {/* <VideoHead /> */}
+      <CategoryChips />
       <VideoList />
     </div>
   )
