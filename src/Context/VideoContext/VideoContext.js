@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react"
+import { videos } from "../../backend/db/videos";
 import { videoreducerfn } from "../../Reducers/VideoReducer/videoReducerfn";
 
 const VideoContext = createContext()
@@ -34,15 +35,20 @@ const VideoProvider = ({ children }) => {
     getVideos()
     }, []);
 
-    const filterproductsbyCategory = () => {
-
+    const filtervideobyCategory = () => {
+        if(videostate.selectedcategory === "All"){
+            return videos
+        }
+        return videos.filter((item)=> item.category === videostate.selectedcategory)
     }
 
     const selectcategory = (category) => {
         videodispatch({ type: 'selectedcategory', payload: category})
     }
 
-   return <VideoContext.Provider value={ { videostate, selectcategory } }>
+    const filteredvideo = filtervideobyCategory()
+
+   return <VideoContext.Provider value={ { videostate, selectcategory, filteredvideo } }>
        {children}
    </VideoContext.Provider>
 }

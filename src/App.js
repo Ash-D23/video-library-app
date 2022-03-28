@@ -10,7 +10,6 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import Logout from './Pages/Logout/Logout';
 import Dashboard from './Pages/Dashboard/Dashboard';
-import CategoryPage from './Pages/CategoryPage/CategoryPage';
 import PlaylistPage from  './Pages/PlaylistPage/PlaylistPage';
 import { useAuthContext } from './Context/AuthContext/AuthContext';
 import RequireAuth from './hooks/RequireAuth';

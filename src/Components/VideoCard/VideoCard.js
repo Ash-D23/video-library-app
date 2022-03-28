@@ -1,7 +1,8 @@
 import React from 'react';
 import './VideoCard.css';
 
-function VideoCard() {
+function VideoCard({ video: { title }}) {
+
   return (
     <div class="card card--video margin--medium">
         <div className="card__image--container container--relative badge-content">
@@ -17,8 +18,7 @@ function VideoCard() {
         <div class="card__body padding--medium">
             <div class="card__heading margin-tb--small">
                 <div class="container__flex--spacebetween">
-                    <p class="text--medium">Video Name</p>
-                    <p>3 min</p>
+                    <p class="text--medium">{title}</p>
                 </div>
             </div> 
             <div class="card__description margin-bottom--small">
