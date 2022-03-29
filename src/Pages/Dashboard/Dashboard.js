@@ -6,9 +6,9 @@ import { useVideo } from '../../Context/VideoContext/VideoContext';
 
 function Dashboard() {
 
-  const { filteredvideo, videostate } = useVideo()
+  const { filteredvideo, videoState } = useVideo()
   
-  return videostate.isLoading ? <Loader /> : (
+  return videoState.isLoading ? <Loader /> : (
     <div className="main">
       <CategoryChips />
       <VideoList videos={filteredvideo} />

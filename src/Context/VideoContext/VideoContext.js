@@ -9,26 +9,26 @@ const useVideo = () => useContext(VideoContext)
 
 const VideoProvider = ({ children }) => {
 
-    const [videostate, videodispatch] = useReducer(videoreducerfn, {
+    const [videoState, videoDispatch] = useReducer(videoreducerfn, {
         videos: [],
         isLoading: false,
         categories: ['All'],
-        selectedcategory: 'All'
+        selectedCategory: 'All'
       });
 
     const getVideos = async () => {
-        videodispatch({ type: 'videoLoading' , payload: true})
+        videoDispatch({ type: 'videoLoading' , payload: true})
         try{
             let videoresult = await axios.get('/api/videos')
             let categoryresult = await axios.get('/api/categories')        
 
-            videodispatch({ type: 'setcategoriesandvideos', 
+            videoDispatch({ type: 'setcategoriesandvideos', 
             payload: { videos: videoresult.data.videos, 
                 categories:  categoryresult.data.categories.map((item)=> item.categoryName)}})
             
         }catch(err){
             console.log(err)
-            videodispatch({ type: 'videoLoading' , payload: false})
+            videoDispatch({ type: 'videoLoading' , payload: false})
         }
     }
 
@@ -37,19 +37,19 @@ const VideoProvider = ({ children }) => {
     }, []);
 
     const filtervideobyCategory = () => {
-        if(videostate.selectedcategory === "All"){
+        if(videoState.selectedCategory === "All"){
             return videos
         }
-        return videos.filter((item)=> item.category === videostate.selectedcategory)
+        return videos.filter((item)=> item.category === videoState.selectedCategory)
     }
 
-    const selectcategory = (category) => {
-        videodispatch({ type: 'selectedcategory', payload: category})
+    const selectCategory = (category) => {
+        videoDispatch({ type: 'selectedCategory', payload: category})
     }
 
     const filteredvideo = filtervideobyCategory()
 
-   return <VideoContext.Provider value={ { videostate, selectcategory, filteredvideo, videodispatch } }>
+   return <VideoContext.Provider value={ { videoState, selectCategory, filteredvideo, videoDispatch } }>
        {children}
    </VideoContext.Provider>
 }

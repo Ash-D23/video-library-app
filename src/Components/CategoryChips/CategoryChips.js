@@ -5,7 +5,7 @@ import './CategoryChips.css'
 
 function CategoryChips() {
 
-  const { videostate, selectcategory, videodispatch } = useVideo()
+  const { videoState, selectCategory, videoDispatch } = useVideo()
 
   const [searchParams] = useSearchParams()
 
@@ -13,15 +13,15 @@ function CategoryChips() {
 
   useEffect(()=>{
       if(category){
-        videodispatch({ type: "selectedcategory", payload: category})
+        videoDispatch({ type: "selectedCategory", payload: category})
       }
   }, [category])
 
   return (
     <div className="chips__container">
-        {videostate.categories?.map((item)=>{
-            return <button key={item} onClick={()=> selectcategory(item)} 
-            className={`chip chip--primary ${item === videostate.selectedcategory ? 'chip--active': null}`}> 
+        {videoState.categories?.map((item)=>{
+            return <button key={item} onClick={()=> selectCategory(item)} 
+            className={`chip chip--primary ${item === videoState.selectedCategory ? 'chip--active': null}`}> 
             {item}
             </button>
         })}
