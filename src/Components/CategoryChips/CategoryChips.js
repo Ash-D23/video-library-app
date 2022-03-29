@@ -7,8 +7,6 @@ function CategoryChips() {
 
   const { videostate, selectcategory, videodispatch } = useVideo()
 
-  console.log(videostate)
-
   const [searchParams] = useSearchParams()
 
   let category = searchParams.get('category')

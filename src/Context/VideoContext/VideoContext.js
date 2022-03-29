@@ -17,18 +17,19 @@ const VideoProvider = ({ children }) => {
       });
 
     const getVideos = async () => {
-    videodispatch({ type: 'videoLoading' , payload: true})
-    try{
-        let videoresult = await axios.get('/api/videos')
-        let categoryresult = await axios.get('/api/categories')
-        videodispatch({ type: 'setvideos' , payload: videoresult.data.videos})
-        videodispatch({ type: 'setcategories' , payload: categoryresult.data.categories.map((item)=> item.categoryName)})
-        videodispatch({ type: 'videoLoading' , payload: false})
-        
-    }catch(err){
-        console.log(err)
-        videodispatch({ type: 'videoLoading' , payload: false})
-    }
+        videodispatch({ type: 'videoLoading' , payload: true})
+        try{
+            let videoresult = await axios.get('/api/videos')
+            let categoryresult = await axios.get('/api/categories')        
+
+            videodispatch({ type: 'setcategoriesandvideos', 
+            payload: { videos: videoresult.data.videos, 
+                categories:  categoryresult.data.categories.map((item)=> item.categoryName)}})
+            
+        }catch(err){
+            console.log(err)
+            videodispatch({ type: 'videoLoading' , payload: false})
+        }
     }
 
     useEffect(() => {
@@ -47,6 +48,8 @@ const VideoProvider = ({ children }) => {
     }
 
     const filteredvideo = filtervideobyCategory()
+
+    console.log(videostate)
 
    return <VideoContext.Provider value={ { videostate, selectcategory, filteredvideo, videodispatch } }>
        {children}
