@@ -8,3 +8,7 @@
 
     --clr-error: #dc2626;
 }
+
+::-webkit-scrollbar {
+    height:10px;
+  }

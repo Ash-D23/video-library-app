@@ -1,0 +1,45 @@
+.container--chips{
+    min-height: 10rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chips__container{
+    display: flex;
+    padding: 1rem;
+    overflow: scroll;
+    margin: 1rem 0;
+    gap: 12px;
+    width: 100%;
+}
+
+.chip{
+    border-radius: 15px;
+    background-color: var(--clr-grey);
+    padding: var(--padding-medium);
+    cursor: pointer;
+    width: fit-content;
+    white-space: nowrap;
+    font-size: 1.6rem;
+}
+
+.chip:hover{
+    background-color: var(--clr-dark-grey);
+}
+
+.chip--primary{
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary);
+    border: 1px solid var(--clr-secondary);
+}
+
+.chip--primary:hover{
+    background-color: var(--clr-secondary) ;
+    color: var(--clr-primary);
+}
+
+.chip--active{
+    background-color: var(--clr-secondary) ;
+    color: var(--clr-primary);
+}

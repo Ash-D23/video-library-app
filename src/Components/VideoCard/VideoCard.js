@@ -1,28 +1,34 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './VideoCard.css';
 
-function VideoCard() {
+function VideoCard({ video}) {
+
+  const { title, creator, _id } = video;
+
+  const navigate = useNavigate();
+
   return (
-    <div class="card card--video margin--medium">
+    <div onClick={() => navigate("/video/"+_id)} className="card card--video margin--medium">
         <div className="card__image--container container--relative badge-content">
-            <img onClick={null} class="card__image" src="/Images/video.jpg" />
+            <img className="card__image" src="/Images/video.jpg" />
             
             <div className='video-image--overlay'>
 
             </div>
-            <div class="video--play">
-                <i class="fab fa-youtube text--large"></i>
+            <div className="video--play">
+                <i className="fab fa-youtube text--large"></i>
             </div>
         </div>
-        <div class="card__body padding--medium">
-            <div class="card__heading margin-tb--small">
-                <div class="container__flex--spacebetween">
-                    <p class="text--medium">Video Name</p>
-                    <p>3 min</p>
+        <div className="card__body padding--medium">
+            <div className="card__heading margin-tb--small">
+                <div className="container__flex--spacebetween">
+                    <p className="text--medium">{title}</p>
+                    <i className="fas fa-ellipsis-v"></i>
                 </div>
             </div> 
-            <div class="card__description margin-bottom--small">
-                <p class="clr--grey">Name</p>
+            <div className="card__description margin-bottom--small">
+                <p className="clr--grey">{creator}</p>
             </div>
             
         </div> 

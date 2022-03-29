@@ -1,22 +1,15 @@
 import React from 'react'
+import { useVideo } from '../../Context/VideoContext/VideoContext';
 import VideoCard from '../VideoCard/VideoCard';
 import './VideoList.css'
 
-function VideoList() {
-  return (
-    <div class="main">
-        <div class="main--heading">
-           <h2 class="video__title clr--secondary margin-tb--large">Heading</h2>
-           <p class="text--large margin-tb--large">Description</p>
-        </div>
+function VideoList({ videos }) {
 
-        <div class="container__flex--center container__flex--wrap">
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
-          <VideoCard />
-          
-        </div>
+  return (
+    <div className="container__flex--center container__flex--wrap">
+      {videos?.map((video)=>{
+        return <VideoCard key={video._id} video={video} />
+      })}
     </div>
   )
 }
