@@ -31,10 +31,10 @@ function Navbar({ onMenuClick }) {
                   <div className="container__flex--center">
                       <div className="navbar__logo">
                         <i onClick={onMenuClick} className="fas fa-bars icon__menu"></i>
+                        <i className="fas fa-play-circle icon__play"></i>
                       </div>
                       <div className="navbar__title text--medium">
                           <Link to="/">Vidbook</Link>
-
                       </div>
                   </div>
               </div>

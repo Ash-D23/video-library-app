@@ -70,17 +70,36 @@
     color: var(--clr-grey)
 }
 
+.video__drawer{
+    padding: var(--padding-medium);
+}
+
 @media only screen and (max-width: 600px) {
 
     .video__drawer{
-        display: none;
-        position: relative;
-        z-index: 2;
+        position: fixed;
+        width: 100%;
+        border-top: 1px solid var(--clr-grey);
+        z-index: 5;
         height: auto;
+        top: unset;
+        bottom: 0;
+        padding: 0;
     }
 
-    .video__drawer--display{
-        display: block;
+    .video__drawer .drawer__navigation-items p{
+        display: none;
+    }
+
+    .video__drawer .drawer__navigation{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .video__drawer .drawer__navigation-items {
+        padding: var(--padding-large);
+        margin-bottom: 0;
     }
 
     .navbar__container--plain .navbar__display{

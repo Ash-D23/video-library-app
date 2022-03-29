@@ -84,6 +84,14 @@
     display: none;
 }
 
+.icon__menu{
+    display: none;
+}
+
+.icon__play{
+    display: block;
+}
+
 @media only screen and (max-width: 900px){
 
     .container--80{
@@ -99,6 +107,14 @@
 @media only screen and (max-width: 600px){
 
     .search__container{
+        display: none;
+    }
+
+    .icon__menu{
+        display: block;
+    }
+
+    .icon__play{
         display: none;
     }
 
