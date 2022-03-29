@@ -1,12 +1,29 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import CategoryCard from '../../Components/CategoryCard/CategoryCard';
+import Loader from '../../Components/Loader/Loader'
 import './HomePage.css'
 
 function HomePage() {
 
-  const categories = [{id: 1, imgurl: '/Images/video.jpg', CategoryName: 'Editing'}, 
-  {id: 2, imgurl: '/Images/video.jpg', CategoryName: 'Camera'}, {id: 3, imgurl: '/Images/video.jpg', CategoryName: 'Shooting'},
-  {id: 4, imgurl: '/Images/video.jpg', CategoryName: 'Videography'}]
+  const [categories, setcategories] = useState([])
+  const [isloading, setisloading] = useState(false)
+
+  const getCategories= async () => {
+    try{
+      let categoryresult = await axios.get('/api/categories')
+      setcategories(categoryresult.data.categories)
+      setisloading(false)
+    }catch(err){
+      console.log(err)
+      setisloading(false)
+    }
+  }
+
+  useEffect(() => {
+    setisloading(true)
+    getCategories()
+  }, [])
 
   return (
     <div>
@@ -26,7 +43,7 @@ function HomePage() {
                 <h2 class="category__heading">Category</h2>
             </div>
             <div class="container__flex--center container__flex--wrap">
-                {categories?.map((item)=>{
+              { isloading ? <Loader /> : categories?.map((item)=>{
                     return <CategoryCard category={item} />
                 })}
             </div>

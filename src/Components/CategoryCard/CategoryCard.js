@@ -1,13 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function CategoryCard({ category : {id, imgurl, CategoryName}}) {
+function CategoryCard({ category : {id, imgurl, categoryName}}) {
+
+    const navigate = useNavigate()
 
     return (
-      <div onClick={null} class="category--card container--relative">
+      <div onClick={()=> navigate("/explore?category="+categoryName)} class="category--card container--relative">
           <div className="category--image">
             <img src={imgurl} />
           </div>
-          <h3 class="category--title">{CategoryName}</h3>
+          <h3 class="category--title">{categoryName}</h3>
           <div class="category--overlay shadow--bottom">
           </div>
       </div>

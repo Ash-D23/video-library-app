@@ -5,7 +5,7 @@ import './CategoryChips.css'
 
 function CategoryChips() {
 
-  const { videostate, selectcategory } = useVideo()
+  const { videostate, selectcategory, videodispatch } = useVideo()
 
   console.log(videostate)
 
@@ -14,7 +14,9 @@ function CategoryChips() {
   let category = searchParams.get('category')
 
   useEffect(()=>{
-      console.log(category)
+      if(category){
+        videodispatch({ type: "selectedcategory", payload: category})
+      }
   }, [category])
 
   return (
