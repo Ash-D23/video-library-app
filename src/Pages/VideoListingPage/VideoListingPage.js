@@ -6,7 +6,7 @@ import './VideoListingPage.css'
 function VideoListingPage() {
   return (
     <>
-      <div class="video__main">
+      <div className="video__main">
         <Sidebar />
         <Outlet />
       </div>

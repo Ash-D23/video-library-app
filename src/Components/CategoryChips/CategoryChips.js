@@ -18,10 +18,10 @@ function CategoryChips() {
   }, [category])
 
   return (
-    <div class="chips__container">
+    <div className="chips__container">
         {videostate.categories?.map((item)=>{
-            return <button onClick={()=> selectcategory(item)} 
-            class={`chip chip--primary ${item === videostate.selectedcategory ? 'chip--active': null}`}> 
+            return <button key={item} onClick={()=> selectcategory(item)} 
+            className={`chip chip--primary ${item === videostate.selectedcategory ? 'chip--active': null}`}> 
             {item}
             </button>
         })}

@@ -49,8 +49,6 @@ const VideoProvider = ({ children }) => {
 
     const filteredvideo = filtervideobyCategory()
 
-    console.log(videostate)
-
    return <VideoContext.Provider value={ { videostate, selectcategory, filteredvideo, videodispatch } }>
        {children}
    </VideoContext.Provider>

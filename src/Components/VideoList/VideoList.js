@@ -6,9 +6,9 @@ import './VideoList.css'
 function VideoList({ videos }) {
 
   return (
-    <div class="container__flex--center container__flex--wrap">
+    <div className="container__flex--center container__flex--wrap">
       {videos?.map((video)=>{
-        return <VideoCard video={video} />
+        return <VideoCard key={video._id} video={video} />
       })}
     </div>
   )
