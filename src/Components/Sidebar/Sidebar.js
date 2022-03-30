@@ -7,7 +7,7 @@ function Sidebar() {
     <div className="video-drawer__container video__drawer container--sticky clr--secondary">
         <div className="drawer__navigation text-clr--primary">
             <Link to="/explore">
-                <div className="drawer__navigation-items">
+                <div className="drawer__navigation-items sidebar__active">
                     <i className='fas fa-play'></i>
                     <p>Dashboard</p>
                 </div>

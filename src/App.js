@@ -28,7 +28,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
 
         <Route path='/explore' element={<VideoListingPage />} >
-          <Route path='' element={<VideoProvider><Dashboard /></VideoProvider>} />
+          <Route path='' element={<Dashboard />} />
           <Route path='playlist' element={<RequireAuth><PlaylistPage /></RequireAuth>} />
         </Route>
 
