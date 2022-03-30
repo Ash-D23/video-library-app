@@ -1,4 +1,3 @@
-import './App.css';
 import Navigation from './Components/Navigation/Navigation';
 import Footer from './Components/Footer/Footer';
 import HomePage from './Pages/HomePage/HomePage';
@@ -13,7 +12,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import PlaylistPage from  './Pages/PlaylistPage/PlaylistPage';
 import { useAuthContext } from './Context/AuthContext/AuthContext';
 import RequireAuth from './hooks/RequireAuth';
-import { VideoProvider } from './Context/VideoContext/VideoContext';
+import './App.css';
 
 function App() {
 
