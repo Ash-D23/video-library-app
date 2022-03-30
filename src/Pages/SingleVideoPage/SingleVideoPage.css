@@ -74,6 +74,15 @@
     padding: var(--padding-medium)
 }
 
+.single-video--action:hover{
+    color: var(--clr-secondary);
+    cursor: pointer;
+}
+
+.video--active{
+    color: var(--clr-secondary);
+}
+
 @media only screen and (max-width: 1200px) {
     .single-video__container{
         display: grid;

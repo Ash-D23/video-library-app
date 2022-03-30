@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
 import Notes from '../../Components/Notes/Notes';
+import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
 import './SingleVideoPage.css';
 
 function SingleVideoPage() {
@@ -29,6 +30,12 @@ function SingleVideoPage() {
 
   const params = useParams()
 
+  const { addtoLikes, removeFromLikes, isVideoInLikes } = usePlaylist()
+
+  const checkVideoInLikes = isVideoInLikes(singlevideo?._id)
+
+  const toggleLike = () => checkVideoInLikes ? removeFromLikes(singlevideo?._id) : addtoLikes(singlevideo)
+
   return isLoading ? <Loader /> : (
     <div className='single-video__container'>
       <div className="single-video--content">
@@ -41,7 +48,7 @@ function SingleVideoPage() {
                 <h3>{singlevideo.title} | by {singlevideo.creator}</h3>
                 <div className="single-video--actions">
                   <div className="single-video--actions--container">
-                    <div className="single-video--action">
+                    <div onClick={toggleLike} className={`single-video--action ${checkVideoInLikes ? 'video--active' : null}`}>
                       <i className="far fa-thumbs-up"></i>
                       <p className="margin-left--small">Like</p>
                     </div>
