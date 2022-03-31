@@ -47,15 +47,9 @@ const PlaylistProvider = ({ children }) => {
         }
     }, [user])
 
-    // add to likes
-
     const addtoLikes = (video) => playlsitDispatch({ type: 'addtoLikes', payload: video})
-    
-    // remove video from likes
 
     const removeFromLikes = (_id) => playlsitDispatch({ type: 'removeFromLikes', payload: _id})
-
-    // check if video in likes
 
     const isVideoInLikes = (_id) => {
         let result = false
@@ -69,11 +63,23 @@ const PlaylistProvider = ({ children }) => {
     
         return result
     }
+
+    const addtoWatchLater = (video) => playlsitDispatch({ type: 'addtoWatchLater', payload: video})
+
+    const removeFromWatchLater = (_id) => playlsitDispatch({ type: 'removeFromWatchLater', payload: _id})
+
+    const isVideoInWatchLater = (_id) => {
+        let result = false
     
-
-    // add to watch later
-
-    // remove from watch later
+        playlistState.watchLater.forEach((item) => {
+            if(item._id === _id){
+                result = true
+                return
+            }
+        })
+    
+        return result
+    }
 
     // add to history
 
@@ -93,7 +99,9 @@ const PlaylistProvider = ({ children }) => {
 
     console.log(playlistState)
     
-    return <PlaylistContext.Provider value={ { addtoLikes, removeFromLikes, isVideoInLikes } }>
+    return <PlaylistContext.Provider value={ { 
+        addtoLikes, removeFromLikes, isVideoInLikes, 
+        addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } }>
         {children}
     </PlaylistContext.Provider>
 }
