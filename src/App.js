@@ -1,4 +1,3 @@
-import './App.css';
 import Navigation from './Components/Navigation/Navigation';
 import Footer from './Components/Footer/Footer';
 import HomePage from './Pages/HomePage/HomePage';
@@ -10,10 +9,14 @@ import Login from './Pages/Login/Login';
 import SignUp from './Pages/SignUp/SignUp';
 import Logout from './Pages/Logout/Logout';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import LikePage from './Pages/LikePage/LikePage';
+import WatchLaterPage from './Pages/WatchLaterPage/WatchLaterPage';
+import HistoryPage from './Pages/HistoryPage/HistoryPage';
+import SinglePlaylistPage from './Pages/SinglePlaylistPage/SinglePlaylistPage';
 import PlaylistPage from  './Pages/PlaylistPage/PlaylistPage';
 import { useAuthContext } from './Context/AuthContext/AuthContext';
 import RequireAuth from './hooks/RequireAuth';
-import { VideoProvider } from './Context/VideoContext/VideoContext';
+import './App.css';
 
 function App() {
 
@@ -29,7 +32,11 @@ function App() {
 
         <Route path='/explore' element={<VideoListingPage />} >
           <Route path='' element={<Dashboard />} />
+          <Route path='likes' element={<LikePage />} />
+          <Route path='watchlater' element={<WatchLaterPage />} />
+          <Route path='history' element={<HistoryPage />} />
           <Route path='playlist' element={<RequireAuth><PlaylistPage /></RequireAuth>} />
+          <Route path='playlist/:id' element={<RequireAuth><SinglePlaylistPage /></RequireAuth>} />
         </Route>
 
         <Route path='/video/:id' element={<SingleVideoPage />} />
