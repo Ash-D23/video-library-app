@@ -11,7 +11,7 @@ function HistoryPage() {
       <div className='container__flex--center padding--large'>
         <button onClick={removeAllHistory} className="btn btn--secondary">Clear History</button>
       </div>
-      <VideoList videos={playlistState.history} remove={true} removefn={removeFromHistory} />
+      <VideoList videos={playlistState.history} showRemove={true} removeHandler={removeFromHistory} />
     </div>
   )
 }

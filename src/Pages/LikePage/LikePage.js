@@ -10,7 +10,7 @@ function LikePage() {
   return (
     <div className="main">
       <VideoHead heading={"Likes"} description={"List of videos liked by user"} />
-      <VideoList videos={playlistState.likes} remove={true} removefn={removeFromLikes} />
+      <VideoList videos={playlistState.likes} showRemove={true} removeHandler={removeFromLikes} />
     </div>
   )
 }

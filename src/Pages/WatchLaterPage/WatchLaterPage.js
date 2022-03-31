@@ -10,7 +10,7 @@ function WatchLaterPage() {
   return (
     <div className="main">
       <VideoHead heading={"Watch Later"} description={"List of videos added to Watch later"} />
-      <VideoList videos={playlistState.watchLater} remove={true} removefn={removeFromWatchLater} />
+      <VideoList videos={playlistState.watchLater} showRemove={true} removeHandler={removeFromWatchLater} />
     </div>
   )
 }
