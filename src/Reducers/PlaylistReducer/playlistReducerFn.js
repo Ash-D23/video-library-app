@@ -18,6 +18,8 @@ export const playlistReducerFn = (state, action) => {
             return { ...state, history: [...state.history, action.payload]}
       case 'removeFromHistory':
             return { ...state, history: state.history.filter((item) => item._id !== action.payload)}
+      case 'removeAllHistory':
+            return { ...state, history: []}
       case 'setPlaylists':
           return { ...state, playlist: action.payload}
       case 'addtoPlaylists':

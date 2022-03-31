@@ -39,6 +39,10 @@
  display: none;
 }
 
+.card--dismiss{
+    z-index: 6;
+}
+
 @media only screen and (max-width: 600px) {
 
     .card--video .card__image--container {

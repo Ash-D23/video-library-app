@@ -1,17 +1,25 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
 import './VideoCard.css';
 
-function VideoCard({ video}) {
+function VideoCard({ video, remove, removefn}) {
 
   const { title, creator, _id } = video;
 
+  const { addtoHistory } = usePlaylist()
+
   const navigate = useNavigate();
 
+  const handleclick = () => {
+    addtoHistory(video)
+    navigate("/video/"+_id)
+  }
+  
   return (
-    <div onClick={() => navigate("/video/"+_id)} className="card card--video margin--medium">
-        <div className="card__image--container container--relative badge-content">
-            <img className="card__image" src="/Images/video.jpg" />
+    <div  className="card card--video margin--medium container--relative">
+        <div onClick={handleclick} className="card__image--container container--relative badge-content">
+            <img  className="card__image" src="/Images/video.jpg" />
             
             <div className='video-image--overlay'>
 
@@ -20,6 +28,7 @@ function VideoCard({ video}) {
                 <i className="fab fa-youtube text--large"></i>
             </div>
         </div>
+        { remove ?  <i onClick={() => removefn(_id)} className="fas fa-times clr--primary card--dismiss card-position--tr"></i> : null}
         <div className="card__body padding--medium">
             <div className="card__heading margin-tb--small">
                 <div className="container__flex--spacebetween">

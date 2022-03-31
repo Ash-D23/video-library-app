@@ -81,11 +81,11 @@ const PlaylistProvider = ({ children }) => {
         return result
     }
 
-    // add to history
+    const addtoHistory = (video) => playlsitDispatch({ type: 'addtoHistory', payload: video})
 
-    // remove from history
+    const removeFromHistory = (_id) => playlsitDispatch({ type: 'removeFromHistory', payload: _id})
 
-    // remove all history
+    const removeAllHistory = () => playlsitDispatch({ type: 'removeAllHistory'})
 
     // create playlist
 
@@ -100,6 +100,7 @@ const PlaylistProvider = ({ children }) => {
     console.log(playlistState)
     
     return <PlaylistContext.Provider value={ { 
+        playlistState, addtoHistory, removeFromHistory, removeAllHistory,
         addtoLikes, removeFromLikes, isVideoInLikes, 
         addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } }>
         {children}

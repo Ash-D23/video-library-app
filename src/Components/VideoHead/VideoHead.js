@@ -1,10 +1,10 @@
 import React from 'react'
 
-function VideoHead() {
+function VideoHead({ heading, description }) {
   return (
     <div className="main--heading">
-        <h2 className="video__title clr--secondary margin-tb--large">Heading</h2>
-        <p className="text--large margin-tb--large">Description</p>
+        <h2 className="video__title clr--secondary margin-tb--large">{heading}</h2>
+        <p className="text--large margin-tb--large">{description}</p>
     </div>
 )
 }

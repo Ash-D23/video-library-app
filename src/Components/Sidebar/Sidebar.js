@@ -7,24 +7,24 @@ function Sidebar() {
     <div className="video-drawer__container video__drawer container--sticky clr--secondary">
         <div className="drawer__navigation text-clr--primary">
             <Link to="/explore">
-                <div className="drawer__navigation-items sidebar__active">
+                <div className="drawer__navigation-items">
                     <i className='fas fa-play'></i>
                     <p>Dashboard</p>
                 </div>
             </Link>
-            <Link to="/explore/playlist">
+            <Link to="/explore/likes">
                 <div className="drawer__navigation-items">
                     <i className="far fa-thumbs-up"></i>
                     <p>Likes</p>
                 </div>
             </Link>
-            <Link to="/explore/playlist">
+            <Link to="/explore/history">
                 <div className="drawer__navigation-items">
                     <i className='fas fa-history'></i>
                     <p>History</p>
                 </div> 
             </Link>
-            <Link to="/explore/playlist">
+            <Link to="/explore/watchlater">
                 <div className="drawer__navigation-items">
                     <i className='far fa-clock'></i>
                     <p>Watch later</p>
