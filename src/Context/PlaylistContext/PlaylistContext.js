@@ -47,9 +47,24 @@ const PlaylistProvider = ({ children }) => {
         }
     }, [user])
 
-    const addtoLikes = (video) => playlsitDispatch({ type: 'addtoLikes', payload: video})
+    const addtoLikes = async (video) => {
+        try{
+             await axios.post('/api/user/likes', { video }, config)
+            playlsitDispatch({ type: 'addtoLikes', payload: video})
 
-    const removeFromLikes = (_id) => playlsitDispatch({ type: 'removeFromLikes', payload: _id})
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const removeFromLikes = async (_id) => {
+        try{
+             await axios.delete('/api/user/likes/'+_id, config)
+            playlsitDispatch({ type: 'removeFromLikes', payload: _id})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     const isVideoInLikes = (_id) => {
         let result = false
@@ -64,9 +79,23 @@ const PlaylistProvider = ({ children }) => {
         return result
     }
 
-    const addtoWatchLater = (video) => playlsitDispatch({ type: 'addtoWatchLater', payload: video})
+    const addtoWatchLater = async (video) => {
+        try{
+             await axios.post('/api/user/watchLater', { video }, config)
+            playlsitDispatch({ type: 'addtoWatchLater', payload: video})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
-    const removeFromWatchLater = (_id) => playlsitDispatch({ type: 'removeFromWatchLater', payload: _id})
+    const removeFromWatchLater = async (_id) => {
+        try{
+             await axios.delete('/api/user/watchLater/'+_id, config)
+            playlsitDispatch({ type: 'removeFromWatchLater', payload: _id})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     const isVideoInWatchLater = (_id) => {
         let result = false
@@ -81,23 +110,32 @@ const PlaylistProvider = ({ children }) => {
         return result
     }
 
-    const addtoHistory = (video) => playlsitDispatch({ type: 'addtoHistory', payload: video})
+    const addtoHistory = async (video) => {
+        try{
+             await axios.post('/api/user/history', { video }, config)
+            playlsitDispatch({ type: 'addtoHistory', payload: video})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
-    const removeFromHistory = (_id) => playlsitDispatch({ type: 'removeFromHistory', payload: _id})
+    const removeFromHistory = async (_id) => {
+        try{
+             await axios.delete('/api/user/history/'+_id, config)
+            playlsitDispatch({ type: 'removeFromHistory', payload: _id})
+        }catch(err){
+            console.log(err)
+        }
+    }
 
-    const removeAllHistory = () => playlsitDispatch({ type: 'removeAllHistory'})
-
-    // create playlist
-
-    // playlistnames
-
-    // add video to playlist
-
-    // remove playlist
-
-    // remove video from playlist
-
-    console.log(playlistState)
+    const removeAllHistory = async () => {
+        try{
+             await axios.delete('/api/user/history/all', config)
+            playlsitDispatch({ type: 'removeAllHistory'})
+        }catch(err){
+            console.log(err)
+        }
+    }
     
     return <PlaylistContext.Provider value={ { 
         playlistState, addtoHistory, removeFromHistory, removeAllHistory,
