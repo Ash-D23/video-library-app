@@ -13,7 +13,7 @@ export const playlistReducerFn = (state, action) => {
       case 'removeFromWatchLater':
             return { ...state, watchLater: state.watchLater.filter((item) => item._id !== action.payload)}
       case 'setHistory':
-          return { ...state, history: action.payload}
+          return { ...state, history: action.payload }
       case 'addtoHistory':
             return { ...state, history: [...state.history, action.payload]}
       case 'removeFromHistory':
@@ -21,11 +21,7 @@ export const playlistReducerFn = (state, action) => {
       case 'removeAllHistory':
             return { ...state, history: []}
       case 'setPlaylists':
-          return { ...state, playlist: action.payload}
-      case 'addtoPlaylists':
-            return { ...state, playlist: [...state.playlist, action.payload]}
-      case 'removeFromPlaylists':
-            return { ...state, playlist: state.playlist.filter((item) => item._id !== action.payload)}
+          return { ...state, playlists: action.payload}
       case 'setAll':
           return { ...state, ...action.payload}
       case 'setloading':

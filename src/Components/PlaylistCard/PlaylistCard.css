@@ -1,0 +1,10 @@
+.playlist-card__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 15rem;
+    padding: var(--padding-medium);
+    color: var(--text-clr-secondary);
+    background-color: var(--clr-light);
+    border-radius: 10px;
+}
