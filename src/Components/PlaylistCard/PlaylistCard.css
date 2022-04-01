@@ -7,4 +7,5 @@
     color: var(--text-clr-secondary);
     background-color: var(--clr-light);
     border-radius: 10px;
+    cursor: pointer
 }

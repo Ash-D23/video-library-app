@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
+import Addtoplaylist from '../../Components/AddtoPlaylist/Addtoplaylist';
 import Loader from '../../Components/Loader/Loader';
 import Notes from '../../Components/Notes/Notes';
 import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
@@ -9,6 +10,7 @@ import './SingleVideoPage.css';
 function SingleVideoPage() {
 
   const [singlevideo, setsinglevideo] = useState({})
+  const [showModal, setshowModal] = useState(false)
   const [isLoading, setisLoading] = useState(true)
 
   const getSingleVideo = async () => {
@@ -27,6 +29,8 @@ function SingleVideoPage() {
   useEffect(() => {
     getSingleVideo()
   }, [])
+
+  const onAddtoPlaylist = () => setshowModal(true)
 
   const params = useParams()
 
@@ -59,9 +63,9 @@ function SingleVideoPage() {
                     </div>
                     <div onClick={toggleWatchLater} className={`single-video--action ${checkVideoInWatchLater ? 'video--active' : null}`}>
                       <i className="far fa-clock"></i>
-                      <p className="margin-left--small">Add to Watch Later</p>
+                      <p className="margin-left--small">Watch Later</p>
                     </div>
-                    <div className="single-video--action">
+                    <div onClick={onAddtoPlaylist} className="single-video--action">
                       <i className="fas fa-list"></i>
                       <p className="margin-left--small">Add to Playlist</p>
                     </div>
@@ -79,6 +83,7 @@ function SingleVideoPage() {
           </div>
       </div>
       <Notes />
+      <Addtoplaylist showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )
 }

@@ -146,13 +146,22 @@ const PlaylistProvider = ({ children }) => {
         }
     }
 
+    const removeFromPlaylists = async (_id) => {
+        try{
+            let res = await axios.delete('/api/user/playlists/'+_id, config)
+            playlsitDispatch({ type: 'removeFromPlaylists', payload: _id})
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     console.log(playlistState)
     
     return <PlaylistContext.Provider value={ { 
         playlistState, addtoHistory, removeFromHistory, removeAllHistory,
         addtoLikes, removeFromLikes, isVideoInLikes, 
         addtoWatchLater, removeFromWatchLater, isVideoInWatchLater,
-        createNewPlaylist } }>
+        createNewPlaylist, removeFromPlaylists } }>
         {children}
     </PlaylistContext.Provider>
 }
