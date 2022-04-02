@@ -3,7 +3,7 @@ import { useAuthContext } from './Context/AuthContext/AuthContext';
 import { Navigation, Footer } from './Components'
 import RequireAuth from './hooks/RequireAuth';
 import { HomePage, SingleVideoPage, UserProfile, VideoListingPage,
-  Login, SignUp, Logout, Dashboard, LikePage, WatchLaterPage, HistoryPage, SinglePlaylistPage, PlaylistPage } from './Pages'
+  Login, SignUp, Logout, Dashboard, LikePage, WatchLaterPage, HistoryPage, SinglePlaylistPage, PlaylistPage, SearchPage } from './Pages'
 import './App.css';
 
 function App() {
@@ -30,6 +30,8 @@ function App() {
         <Route path='/video/:id' element={<SingleVideoPage />} />
 
         <Route path='/profile' element={<RequireAuth><UserProfile /></RequireAuth>} />
+
+        <Route path="/search" element={<SearchPage />} />
 
         { user ? <Route path='/login' element={<Navigate to="/" />} /> : <Route path='/login' element={<Login />} /> }
     
