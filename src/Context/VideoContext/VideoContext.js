@@ -1,7 +1,6 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useEffect } from "react"
-import { videos } from "../../backend/db/videos";
-import { videoreducerfn } from "../../Reducers/VideoReducer/videoReducerfn";
+import { createContext, useContext, useReducer, useEffect } from "react";
+import { videoreducerfn } from "../../Reducers";
 
 const VideoContext = createContext()
 

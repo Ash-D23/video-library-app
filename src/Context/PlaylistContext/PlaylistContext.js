@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { initialPlaylist, playlistReducerFn } from "../../Reducers/PlaylistReducer/playlistReducerFn";
+import { initialPlaylist, playlistReducerFn } from "../../Reducers";
 import { useAuthContext } from "../AuthContext/AuthContext";
 
 
