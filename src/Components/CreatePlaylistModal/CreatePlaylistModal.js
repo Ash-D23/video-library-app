@@ -1,17 +1,28 @@
 import React, {useState} from 'react';
+import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
 import './CreatePlaylistModal.css'
 
 function CreatePlaylistModal({ showModal, closeModal}) {
 
+  const { createNewPlaylist } = usePlaylist()
+
   const [Name, setName] = useState('')
   const [Description, setDescription] = useState('')
 
+  const reset = () => {
+    setName('')
+    setDescription('')
+  }
+
   const handlecloseModal = () => {
+      reset()
       closeModal()
   }
 
   const handlesubmit = () => {
-      console.log(Name, Description)
+    createNewPlaylist({ title: Name, description: Description})
+    reset()
+    closeModal()
   }
 
   return (

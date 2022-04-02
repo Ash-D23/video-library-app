@@ -24,6 +24,9 @@ export const playlistReducerFn = (state, action) => {
           return { ...state, playlists: action.payload}
       case 'removeFromPlaylists':
             return { ...state, playlists: state.playlists.filter((item) => item._id !== action.payload)}
+      case 'addVideoToPlaylist':
+            return { ...state, playlists: state.playlists.map((item) => item._id === action.payload._id ? 
+                action.payload.playlist : item )}
       case 'setAll':
           return { ...state, ...action.payload}
       case 'setloading':

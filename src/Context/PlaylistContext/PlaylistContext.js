@@ -155,13 +155,24 @@ const PlaylistProvider = ({ children }) => {
         }
     }
 
+    const addVideoToPlaylist = async (video, playlistID) => {
+        try{
+            let result = await axios.post('/api/user/playlists/'+playlistID, { video }, config)
+            console.log(result)
+            playlsitDispatch({ type: 'addVideoToPlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+        }catch(err){
+            console.log(err.response.status);
+            console.log(err)
+        }
+    }
+
     console.log(playlistState)
     
     return <PlaylistContext.Provider value={ { 
         playlistState, addtoHistory, removeFromHistory, removeAllHistory,
         addtoLikes, removeFromLikes, isVideoInLikes, 
         addtoWatchLater, removeFromWatchLater, isVideoInWatchLater,
-        createNewPlaylist, removeFromPlaylists } }>
+        createNewPlaylist, removeFromPlaylists, addVideoToPlaylist } }>
         {children}
     </PlaylistContext.Provider>
 }
