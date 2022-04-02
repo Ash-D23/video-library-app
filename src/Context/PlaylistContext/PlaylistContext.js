@@ -136,11 +136,51 @@ const PlaylistProvider = ({ children }) => {
             console.log(err)
         }
     }
+
+    const createNewPlaylist = async (playlist) => {
+        try{
+            let result = await axios.post('/api/user/playlists', { playlist }, config)
+            playlsitDispatch({ type: 'setPlaylists', payload: result.data.playlists})
+        }catch(err){
+           console.log(err)
+        }
+    }
+
+    const removeFromPlaylists = async (_id) => {
+        try{
+            let res = await axios.delete('/api/user/playlists/'+_id, config)
+            playlsitDispatch({ type: 'removeFromPlaylists', payload: _id})
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const addVideoToPlaylist = async (video, playlistID) => {
+        try{
+            let result = await axios.post('/api/user/playlists/'+playlistID, { video }, config)
+            playlsitDispatch({ type: 'UpdatePlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+        }catch(err){
+            console.log(err.response.status);
+            console.log(err)
+        }
+    }
+
+    const removeVideoFromPlaylist = async (playlistID, videoID) => {
+        console.log(videoID, playlistID)
+        try{
+            let result = await axios.delete(`/api/user/playlists/${playlistID}/${videoID}`, config)
+            playlsitDispatch({ type: 'UpdatePlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+        }catch(err){
+            console.log(err.response.status);
+            console.log(err)
+        }
+    }
     
     return <PlaylistContext.Provider value={ { 
         playlistState, addtoHistory, removeFromHistory, removeAllHistory,
         addtoLikes, removeFromLikes, isVideoInLikes, 
-        addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } }>
+        addtoWatchLater, removeFromWatchLater, isVideoInWatchLater,
+        createNewPlaylist, removeFromPlaylists, addVideoToPlaylist, removeVideoFromPlaylist } }>
         {children}
     </PlaylistContext.Provider>
 }

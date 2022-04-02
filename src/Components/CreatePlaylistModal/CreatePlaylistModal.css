@@ -1,0 +1,50 @@
+.form-element--column{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-element--column .form-label{
+    font-size: 1.8rem;
+    margin: var(--margin-medium) var(--margin-small);
+}
+
+.form-element--column .form-field{
+    flex-grow: 1;
+}
+
+.modal__actions .btn:last-of-type{
+    margin-right:0;
+}
+
+.modal__body{
+    max-height: 30rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modal__container {
+    margin: 15% auto;
+}
+
+.playlist--item{
+    border-bottom: 1px solid var(--clr-secondary);
+}
+
+.playlist--item:hover{
+    cursor: pointer;
+    background-color: var(--clr-secondary);
+    color: var(--text-clr-secondary)
+}
+
+.addPlaylist .modal__container {
+    max-width: 30rem;
+}
+
+.playlist__body .playlist--item:first-child{
+    border-top: 1px solid var(--clr-secondary);
+}
+
+.addPlaylist .modal__body{
+    max-height: 20rem;
+}
