@@ -1,47 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import VideoList from '../../Components/VideoList/VideoList';
 import VideoHead from '../../Components/VideoHead/VideoHead';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Loader from '../../Components/Loader/Loader';
-import { useAuthContext } from '../../Context/AuthContext/AuthContext';
+import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
 
 function SinglePlaylistPage() {
 
-  const [playlistInfo, setplaylistInfo] = useState({})
-  const [isLoading, setisLoading] = useState(true)
-  const { user } = useAuthContext()
-
-  const getSinglePlaylist = async () => {
-    try{
-      let result = await axios.get('/api/user/playlists/'+params.id, {
-          headers: {
-            authorization: user?.token,
-          }
-      })
-      console.log(result)
-      if(result.data?.playlist){
-        setplaylistInfo(result.data?.playlist)
-      }
-      setisLoading(false)
-    }catch(err){
-      console.log(err)
-      setisLoading(false)
-    }
-  }
-
-  useEffect(() => {
-    getSinglePlaylist()
-  }, [])
-
-  console.log(playlistInfo)
-
   const params = useParams()
+  const {playlistState, removeVideoFromPlaylist} = usePlaylist()
 
-  return isLoading ? <Loader /> : (
+  const removeVideoHandler = (_id) => removeVideoFromPlaylist(playlistInfo._id, _id)
+
+  const playlistInfo = playlistState.playlists.find((item) => item._id === params.id)
+
+  return (
     <div className="main">
       <VideoHead heading={playlistInfo?.title} description={playlistInfo?.description} />
-      <VideoList videos={playlistInfo?.videos} showRemove={true} removeHandler={null} />
+      <VideoList videos={playlistInfo?.videos} showRemove={true} removeHandler={removeVideoHandler} />
     </div>
   )
 }

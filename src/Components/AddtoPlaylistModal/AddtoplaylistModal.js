@@ -20,7 +20,7 @@ function AddtoplaylistModal({ showModal, closeModal, video}) {
           <div className="modal__body margin-tb--large">
               <div className="playlist__body padding-right--small">
                 {playlistState.playlists?.map((item) => {
-                  return <div onClick={() => handlePlaylistClick(item._id)} className='playlist--item padding-tb--medium'>
+                  return <div key={item._id} onClick={() => handlePlaylistClick(item._id)} className='playlist--item padding-tb--medium'>
                     <p className='text--center'>{item.title}</p>
                 </div>
                 })}
