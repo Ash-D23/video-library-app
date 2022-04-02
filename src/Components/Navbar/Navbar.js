@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../Context/AuthContext/AuthContext';
+import { useAuthContext } from '../../Context';
 import './Navbar.css'
 
 function Navbar({ onMenuClick }) {
@@ -89,4 +89,4 @@ function Navbar({ onMenuClick }) {
     )
 }
 
-export default Navbar
+export { Navbar }

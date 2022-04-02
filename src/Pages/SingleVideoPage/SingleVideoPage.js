@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import AddtoplaylistModal from '../../Components/AddtoPlaylistModal/AddtoplaylistModal';
-import Loader from '../../Components/Loader/Loader';
-import Notes from '../../Components/Notes/Notes';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
+import { Loader, Notes, AddtoPlaylistModal } from '../../Components';
+import { usePlaylist } from '../../Context';
 import './SingleVideoPage.css';
 
 function SingleVideoPage() {
@@ -83,9 +81,9 @@ function SingleVideoPage() {
           </div>
       </div>
       <Notes />
-      <AddtoplaylistModal video={singlevideo} showModal={showModal} closeModal={() => setshowModal(false)} />
+      <AddtoPlaylistModal video={singlevideo} showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )
 }
 
-export default SingleVideoPage
+export { SingleVideoPage };

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuthContext } from '../../Context/AuthContext/AuthContext';
+import { useAuthContext } from '../../Context';
 import './Drawer.css';
+
 function Drawer({ show, closeDrawer}) {
 
   const { user } = useAuthContext()
@@ -44,4 +45,4 @@ function Drawer({ show, closeDrawer}) {
   )
 }
 
-export default Drawer
+export { Drawer }

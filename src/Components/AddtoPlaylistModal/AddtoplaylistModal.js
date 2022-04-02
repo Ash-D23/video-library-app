@@ -1,7 +1,7 @@
 import React from 'react'
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext'
+import { usePlaylist } from '../../Context'
 
-function AddtoplaylistModal({ showModal, closeModal, video}) {
+function AddtoPlaylistModal({ showModal, closeModal, video}) {
 
   const { playlistState, addVideoToPlaylist } = usePlaylist()
 
@@ -34,4 +34,4 @@ function AddtoplaylistModal({ showModal, closeModal, video}) {
   )
 }
 
-export default AddtoplaylistModal
+export { AddtoPlaylistModal }

@@ -1,8 +1,6 @@
 import React from 'react';
-import CategoryChips from '../../Components/CategoryChips/CategoryChips';
-import VideoList from '../../Components/VideoList/VideoList';
-import Loader from '../../Components/Loader/Loader';
-import { useVideo } from '../../Context/VideoContext/VideoContext';
+import { CategoryChips, VideoList, Loader } from '../../Components';
+import { useVideo } from '../../Context';
 
 function Dashboard() {
 
@@ -16,4 +14,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export { Dashboard }

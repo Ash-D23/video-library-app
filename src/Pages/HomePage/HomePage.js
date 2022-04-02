@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
-import CategoryCard from '../../Components/CategoryCard/CategoryCard';
-import Loader from '../../Components/Loader/Loader'
+import { Loader, CategoryCard } from '../../Components';
 import './HomePage.css'
 
 function HomePage() {
@@ -65,4 +64,4 @@ function HomePage() {
   )
 }
 
-export default HomePage
+export { HomePage };

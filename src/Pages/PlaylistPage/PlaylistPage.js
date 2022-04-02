@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
-import PlaylistCard from '../../Components/PlaylistCard/PlaylistCard';
-import CreatePlaylistModal from '../../Components/CreatePlaylistModal/CreatePlaylistModal';
+import { usePlaylist } from '../../Context';
+import { PlaylistCard, CreatePlaylistModal } from '../../Components';
 import './PlaylistPage.css';
 
 function PlaylistPage() {
 
-  const { playlistState, createNewPlaylist } = usePlaylist()
+  const { playlistState } = usePlaylist()
 
   const [showModal, setshowModal] = useState(false)
 
@@ -24,4 +23,4 @@ function PlaylistPage() {
   )
 }
 
-export default PlaylistPage
+export { PlaylistPage }

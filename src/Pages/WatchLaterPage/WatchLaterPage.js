@@ -1,7 +1,6 @@
 import React from 'react'
-import VideoHead from '../../Components/VideoHead/VideoHead'
-import VideoList from '../../Components/VideoList/VideoList'
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext'
+import { VideoList, VideoHead } from '../../Components';
+import { usePlaylist } from '../../Context'
 
 function WatchLaterPage() {
 
@@ -15,4 +14,4 @@ function WatchLaterPage() {
   )
 }
 
-export default WatchLaterPage
+export { WatchLaterPage }

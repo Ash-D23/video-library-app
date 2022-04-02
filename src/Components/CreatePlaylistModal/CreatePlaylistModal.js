@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
+import { usePlaylist } from '../../Context';
 import './CreatePlaylistModal.css'
 
 function CreatePlaylistModal({ showModal, closeModal}) {
@@ -53,5 +53,5 @@ function CreatePlaylistModal({ showModal, closeModal}) {
   )
 }
 
-export default CreatePlaylistModal
+export { CreatePlaylistModal }
 

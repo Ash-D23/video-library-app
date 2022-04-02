@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../../Components/Sidebar/Sidebar';
-import { VideoProvider } from '../../Context/VideoContext/VideoContext';
+import { Sidebar } from '../../Components/Sidebar/Sidebar';
+import { VideoProvider } from '../../Context';
 import './VideoListingPage.css';
 
 function VideoListingPage() {
@@ -15,4 +15,4 @@ function VideoListingPage() {
   )
 }
 
-export default VideoListingPage
+export { VideoListingPage }

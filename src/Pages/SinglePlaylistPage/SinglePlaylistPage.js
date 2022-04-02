@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import VideoList from '../../Components/VideoList/VideoList';
-import VideoHead from '../../Components/VideoHead/VideoHead';
+import { VideoHead, VideoList } from '../../Components';
 import { useParams } from 'react-router-dom';
-import Loader from '../../Components/Loader/Loader';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
+import { usePlaylist } from '../../Context';
 
 function SinglePlaylistPage() {
 
@@ -22,4 +20,4 @@ function SinglePlaylistPage() {
   )
 }
 
-export default SinglePlaylistPage
+export { SinglePlaylistPage }

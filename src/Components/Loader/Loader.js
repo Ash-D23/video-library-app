@@ -1,5 +1,6 @@
 import React from 'react';
 import './Loader.css';
+
 function Loader() {
   return (
     <div className="loader padding--small">
@@ -8,4 +9,4 @@ function Loader() {
   )
 }
 
-export default Loader
+export { Loader }

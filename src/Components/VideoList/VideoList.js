@@ -1,5 +1,5 @@
 import React from 'react'
-import VideoCard from '../VideoCard/VideoCard';
+import { VideoCard } from '../VideoCard/VideoCard';
 import './VideoList.css'
 
 function VideoList({ videos, showRemove, removeHandler }) {
@@ -13,4 +13,4 @@ function VideoList({ videos, showRemove, removeHandler }) {
   )
 }
 
-export default VideoList
+export { VideoList }

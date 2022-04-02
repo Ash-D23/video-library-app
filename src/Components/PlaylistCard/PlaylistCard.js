@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
+import { usePlaylist } from '../../Context';
 import './PlaylistCard.css'
 
 function PlaylistCard({ playlist: { title, _id, description, videos } }) {
@@ -22,4 +22,4 @@ function PlaylistCard({ playlist: { title, _id, description, videos } }) {
   )
 }
 
-export default PlaylistCard
+export { PlaylistCard }

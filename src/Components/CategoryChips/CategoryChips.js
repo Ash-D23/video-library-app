@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import { useVideo } from '../../Context/VideoContext/VideoContext';
+import { useVideo } from '../../Context';
 import './CategoryChips.css'
 
 function CategoryChips() {
@@ -29,4 +29,4 @@ function CategoryChips() {
   )
 }
 
-export default CategoryChips
+export { CategoryChips }

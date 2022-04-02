@@ -9,4 +9,4 @@ function VideoHead({ heading, description }) {
 )
 }
 
-export default VideoHead
+export { VideoHead }

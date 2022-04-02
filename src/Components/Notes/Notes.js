@@ -27,4 +27,4 @@ function Notes() {
   )
 }
 
-export default Notes
+export { Notes }

@@ -1,7 +1,6 @@
 import React from 'react';
-import VideoList from '../../Components/VideoList/VideoList';
-import VideoHead from '../../Components/VideoHead/VideoHead';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext'
+import { VideoHead, VideoList } from '../../Components';
+import { usePlaylist } from '../../Context';
 
 function HistoryPage() {
   const { playlistState, removeFromHistory, removeAllHistory } = usePlaylist()
@@ -16,4 +15,4 @@ function HistoryPage() {
   )
 }
 
-export default HistoryPage
+export { HistoryPage }

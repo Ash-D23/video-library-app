@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext';
+import { usePlaylist } from '../../Context';
 import './VideoCard.css';
 
 function VideoCard({ video, removeHandler, showRemove}) {
@@ -45,4 +45,4 @@ function VideoCard({ video, removeHandler, showRemove}) {
   )
 }
 
-export default VideoCard
+export { VideoCard }

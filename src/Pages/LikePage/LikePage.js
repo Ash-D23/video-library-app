@@ -1,7 +1,6 @@
 import React from 'react'
-import VideoList from '../../Components/VideoList/VideoList';
-import VideoHead from '../../Components/VideoHead/VideoHead';
-import { usePlaylist } from '../../Context/PlaylistContext/PlaylistContext'
+import { VideoHead, VideoList } from '../../Components';
+import { usePlaylist } from '../../Context'
 
 function LikePage() {
 
@@ -15,4 +14,4 @@ function LikePage() {
   )
 }
 
-export default LikePage
+export { LikePage }

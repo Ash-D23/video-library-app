@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import {AuthProvider} from './Context/AuthContext/AuthContext';
-import { PlaylistProvider } from "./Context/PlaylistContext/PlaylistContext";
+import { AuthProvider, PlaylistProvider } from './Context';
 import { makeServer } from "./server";
 
 // Call make Server

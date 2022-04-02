@@ -1,21 +1,9 @@
-import Navigation from './Components/Navigation/Navigation';
-import Footer from './Components/Footer/Footer';
-import HomePage from './Pages/HomePage/HomePage';
 import { Routes, Route, Navigate} from 'react-router-dom';
-import SingleVideoPage from './Pages/SingleVideoPage/SingleVideoPage';
-import UserProfile from './Pages/UserProfile/UserProfile';
-import VideoListingPage from './Pages/VideoListingPage/VideoListingPage';
-import Login from './Pages/Login/Login';
-import SignUp from './Pages/SignUp/SignUp';
-import Logout from './Pages/Logout/Logout';
-import Dashboard from './Pages/Dashboard/Dashboard';
-import LikePage from './Pages/LikePage/LikePage';
-import WatchLaterPage from './Pages/WatchLaterPage/WatchLaterPage';
-import HistoryPage from './Pages/HistoryPage/HistoryPage';
-import SinglePlaylistPage from './Pages/SinglePlaylistPage/SinglePlaylistPage';
-import PlaylistPage from  './Pages/PlaylistPage/PlaylistPage';
 import { useAuthContext } from './Context/AuthContext/AuthContext';
+import { Navigation, Footer } from './Components'
 import RequireAuth from './hooks/RequireAuth';
+import { HomePage, SingleVideoPage, UserProfile, VideoListingPage,
+  Login, SignUp, Logout, Dashboard, LikePage, WatchLaterPage, HistoryPage, SinglePlaylistPage, PlaylistPage } from './Pages'
 import './App.css';
 
 function App() {
@@ -32,9 +20,9 @@ function App() {
 
         <Route path='/explore' element={<VideoListingPage />} >
           <Route path='' element={<Dashboard />} />
-          <Route path='likes' element={<LikePage />} />
-          <Route path='watchlater' element={<WatchLaterPage />} />
-          <Route path='history' element={<HistoryPage />} />
+          <Route path='likes' element={<RequireAuth><LikePage /></RequireAuth>} />
+          <Route path='watchlater' element={<RequireAuth><WatchLaterPage /></RequireAuth>} />
+          <Route path='history' element={<RequireAuth><HistoryPage /></RequireAuth>} />
           <Route path='playlist' element={<RequireAuth><PlaylistPage /></RequireAuth>} />
           <Route path='playlist/:id' element={<RequireAuth><SinglePlaylistPage /></RequireAuth>} />
         </Route>
