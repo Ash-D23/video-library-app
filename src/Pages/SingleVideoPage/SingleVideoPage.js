@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Loader, Notes, AddtoPlaylistModal } from '../../Components';
-import { usePlaylist } from '../../Context';
+import { useAuthContext, usePlaylist } from '../../Context';
 import './SingleVideoPage.css';
 
 function SingleVideoPage() {
@@ -11,12 +11,14 @@ function SingleVideoPage() {
   const [showModal, setshowModal] = useState(false)
   const [isLoading, setisLoading] = useState(true)
 
+  const { user } = useAuthContext()
+
+  const navigate = useNavigate()
+
   const getSingleVideo = async () => {
     try{
       let result = await axios.get('/api/video/'+params.id)
-      if(result.data?.video){
-        setsinglevideo(result.data?.video)
-      }
+      setsinglevideo(result.data?.video)
       setisLoading(false)
     }catch(err){
       console.log(err)
@@ -28,7 +30,13 @@ function SingleVideoPage() {
     getSingleVideo()
   }, [])
 
-  const onAddtoPlaylist = () => setshowModal(true)
+  const onAddtoPlaylist = () => {
+    if(!user){
+      navigate('/login')
+      return 
+    }
+    setshowModal(true)
+  }
 
   const params = useParams()
 
@@ -39,9 +47,21 @@ function SingleVideoPage() {
 
   const checkVideoInWatchLater = isVideoInWatchLater(singlevideo?._id)
 
-  const toggleLike = () => checkVideoInLikes ? removeFromLikes(singlevideo?._id) : addtoLikes(singlevideo)
+  const toggleLike = () => {
+    if(!user){
+      navigate('/login')
+      return 
+    }
+    checkVideoInLikes ? removeFromLikes(singlevideo?._id) : addtoLikes(singlevideo)
+  }
 
-  const toggleWatchLater = () => checkVideoInWatchLater ? removeFromWatchLater(singlevideo?._id) : addtoWatchLater(singlevideo)
+  const toggleWatchLater = () => {
+    if(!user){
+      navigate('/login')
+      return 
+    }
+    checkVideoInWatchLater ? removeFromWatchLater(singlevideo?._id) : addtoWatchLater(singlevideo)
+  }
 
   return isLoading ? <Loader /> : (
     <div className='single-video__container'>

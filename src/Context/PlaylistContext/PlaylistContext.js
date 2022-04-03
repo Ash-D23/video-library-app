@@ -1,9 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { initialPlaylist, playlistReducerFn } from "../../Reducers";
-import { toasterror, toastsuccess } from "../../Utilities";
+import { toasterror, toastsuccess, PLAYLISTS_ACTIONS } from "../../Utilities";
 import { useAuthContext } from "../AuthContext/AuthContext";
-import { PLAYLISTS_ACTIONS } from "../../Utilities";
 
 const PlaylistContext = createContext();
 
@@ -98,7 +97,7 @@ const PlaylistProvider = ({ children }) => {
         try{
              await axios.delete('/api/user/watchLater/'+_id, config)
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_WATCH_LATER, payload: _id})
-            toastsuccess("Removed from Likes")
+            toastsuccess("Removed from Watch Later")
         }catch(err){
             console.log(err)
             toasterror("An Error Occured")
@@ -124,7 +123,6 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_HISTORY, payload: video})
         }catch(err){
             console.log(err)
-            toasterror("An Error Occured")
         }
     }
 
@@ -132,7 +130,7 @@ const PlaylistProvider = ({ children }) => {
         try{
             await axios.delete('/api/user/history/'+_id, config)
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_HISTORY, payload: _id})
-            toastsuccess("Removed From Likes")
+            toastsuccess("Removed From History")
         }catch(err){
             console.log(err)
             toasterror("An Error Occured")

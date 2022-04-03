@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePlaylist } from '../../Context';
+import { useAuthContext, usePlaylist } from '../../Context';
 import { AddtoPlaylistModal } from '../AddtoPlaylistModal/AddtoPlaylistModal';
 import './VideoCard.css';
 
@@ -11,23 +11,35 @@ function VideoCard({ video, removeHandler, showRemove}) {
   const [showMenu, setshowMenu] = useState(false)
   const [showModal, setshowModal] = useState(false)
 
+  const { user } = useAuthContext()
+
+  const navigate = useNavigate();
+
   const { addtoHistory, addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } = usePlaylist()
 
   const checkVideoInWatchLater = isVideoInWatchLater(video?._id)
 
   const toggleWatchLater = () => {
+      if(!user){
+          navigate("/login")
+          return
+      }
       setshowMenu(false)
       checkVideoInWatchLater ? removeFromWatchLater(video?._id) : addtoWatchLater(video) 
   }
 
-  const navigate = useNavigate();
-
   const handleClick = () => {
-    addtoHistory(video)
+    if(user){
+        addtoHistory(video)
+    }
     navigate("/video/"+_id)
   }
 
   const showPlaylist = () => {
+    if(!user){
+        navigate("/login")
+        return
+    }
     setshowMenu(false)
     setshowModal(true)
   }

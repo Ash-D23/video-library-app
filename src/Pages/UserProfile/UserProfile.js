@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, { useState, useReducer } from 'react';
 import { useAuthContext } from '../../Context';
 import { userProfileReducerFn } from '../../Reducers';
-import { toastsuccess, toasterror } from '../../Utilities';
-import { USER_PROFILE_ACTIONS } from '../../Utilities';
+import { toastsuccess, toasterror, USER_PROFILE_ACTIONS } from '../../Utilities';
 import './UserProfile.css';
 
 function UserProfile() {
