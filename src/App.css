@@ -12,3 +12,8 @@
 ::-webkit-scrollbar {
     height:10px;
   }
+
+.empty-list--container img{
+    max-height: 50vh;
+    padding: var(--padding-medium)
+}

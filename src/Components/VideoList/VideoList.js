@@ -9,6 +9,12 @@ function VideoList({ videos, showRemove, removeHandler }) {
       {videos?.map((video)=>{
         return <VideoCard key={video._id} video={video} showRemove={showRemove} removeHandler={removeHandler} />
       })}
+      {videos.length === 0 ? (
+        <div className='empty-list--container'>
+          <img src="/Images/blank.svg" />
+          <h2 className='text--center padding--medium'>No Items Found</h2>
+        </div>
+      ) : null}
     </div>
   )
 }

@@ -3,19 +3,12 @@ import { Link, NavLink } from 'react-router-dom';
 
 function Sidebar() {
 
-    const navActive = ({ isActive }) => {
-        return {
-            color: isActive ? "#ffffff" : "",
-            backgroundColor: isActive ? "#0284c7" : "",
-            marginBottom: "0.5rem"
-        };
-    }
-
   return (
     <div className="video-drawer__container video__drawer container--sticky clr--secondary">
         <div className="drawer__navigation text-clr--primary">
             <NavLink
-            style={navActive}
+            activeClassName="sidebar__active"
+            className='sidebar--nav'
             to={`/explore`}
             end
             key={'dashboard'}
@@ -27,7 +20,8 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            style={navActive}
+            activeClassName="sidebar__active"
+            className='sidebar--nav'
             to={`/explore/likes`}
             key={'likes'}
             >
@@ -38,7 +32,8 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            style={navActive}
+            activeClassName="sidebar__active"
+            className='sidebar--nav'
             to={`/explore/history`}
             key={'history'}
             >
@@ -49,7 +44,8 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            style={navActive}
+            activeClassName="sidebar__active"
+            className='sidebar--nav'
             to={`/explore/watchlater`}
             key={'watchlater'}
             >
@@ -60,7 +56,8 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            style={navActive}
+            activeClassName="sidebar__active"
+            className='sidebar--nav'
             to={`/explore/playlist`}
             key={'playlist'}
             >

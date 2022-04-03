@@ -18,6 +18,12 @@ function PlaylistPage() {
       <div className='container__flex--center container__flex--wrap padding-top--large'>
         {playlistState.playlists?.map((item)=> <PlaylistCard key={item._id} playlist={item} />)}
       </div>
+      {playlistState.playlists.length === 0 ? (
+        <div className='empty-list--container'>
+          <img src="/Images/empty.svg" />
+          <h2 className='text--center padding--medium'>No Playlist Found</h2>
+        </div>
+      ) : null}
       <CreatePlaylistModal showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )

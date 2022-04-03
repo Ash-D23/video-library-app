@@ -79,6 +79,14 @@
     color: var(--text-clr-secondary)
 }
 
+.video__drawer .drawer__navigation-items{
+    margin-bottom: 0;
+}
+
+.sidebar--nav{
+    margin-bottom: 0.5rem;
+}
+
 @media only screen and (max-width: 600px) {
 
     .video__drawer{
@@ -129,8 +137,7 @@
         height: 10px;
     }
 
-    .sidebar__active{
-        background-color: unset;
-        color: unset;
+    .sidebar--nav{
+        margin-bottom: 0;
     }
 }
