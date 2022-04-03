@@ -48,3 +48,10 @@
 .addPlaylist .modal__body{
     max-height: 20rem;
 }
+
+@media only screen and (max-width: 600px){
+
+    .addPlaylist .modal__container {
+        margin: 50% auto;
+    }
+}

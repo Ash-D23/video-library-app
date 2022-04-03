@@ -7,8 +7,7 @@ function Sidebar() {
     <div className="video-drawer__container video__drawer container--sticky clr--secondary">
         <div className="drawer__navigation text-clr--primary">
             <NavLink
-            activeClassName="sidebar__active"
-            className='sidebar--nav'
+            className={({isActive}) => (isActive ? "sidebar--nav sidebar__active" : 'sidebar--nav')}
             to={`/explore`}
             end
             key={'dashboard'}
@@ -20,8 +19,7 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            activeClassName="sidebar__active"
-            className='sidebar--nav'
+            className={({isActive}) => (isActive ? "sidebar--nav sidebar__active" : 'sidebar--nav')}
             to={`/explore/likes`}
             key={'likes'}
             >
@@ -32,8 +30,7 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            activeClassName="sidebar__active"
-            className='sidebar--nav'
+            className={({isActive}) => (isActive ? "sidebar--nav sidebar__active" : 'sidebar--nav')}
             to={`/explore/history`}
             key={'history'}
             >
@@ -44,8 +41,7 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            activeClassName="sidebar__active"
-            className='sidebar--nav'
+            className={({isActive}) => (isActive ? "sidebar--nav sidebar__active" : 'sidebar--nav')}
             to={`/explore/watchlater`}
             key={'watchlater'}
             >
@@ -56,8 +52,7 @@ function Sidebar() {
             </NavLink>
 
             <NavLink
-            activeClassName="sidebar__active"
-            className='sidebar--nav'
+            className={({isActive}) => (isActive ? "sidebar--nav sidebar__active" : 'sidebar--nav')}
             to={`/explore/playlist`}
             key={'playlist'}
             >

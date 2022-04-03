@@ -17,3 +17,7 @@
     max-height: 50vh;
     padding: var(--padding-medium)
 }
+
+.pointer{
+    cursor: pointer;
+}

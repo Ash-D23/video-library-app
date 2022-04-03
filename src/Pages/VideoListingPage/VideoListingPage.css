@@ -137,6 +137,11 @@
         height: 10px;
     }
 
+    .sidebar__active{
+        background-color: unset;
+        color: unset;
+    }
+
     .sidebar--nav{
         margin-bottom: 0;
     }

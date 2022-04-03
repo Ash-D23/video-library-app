@@ -60,6 +60,7 @@
     border: none;
     border-bottom: 1px solid var(--clr-grey);
     width: 50%;
+    flex-grow: 1;
 }
 
 .note__input:focus{

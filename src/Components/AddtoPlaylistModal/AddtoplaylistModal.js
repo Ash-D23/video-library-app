@@ -24,6 +24,12 @@ function AddtoPlaylistModal({ showModal, closeModal, video}) {
                     <p className='text--center'>{item.title}</p>
                 </div>
                 })}
+
+                {playlistState.playlists.length === 0 ? (
+                  <div>
+                    <p className='margin--medium text--center'>No Playlists Found</p>
+                  </div>
+                ) : null}
               </div>
           </div>
           <div className="container__flex--center">
