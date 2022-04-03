@@ -1,9 +1,9 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { initialPlaylist, playlistReducerFn } from "../../Reducers";
-import { toasterror, toastsuccess } from "../../Utilities/ToastMessage";
+import { toasterror, toastsuccess } from "../../Utilities";
 import { useAuthContext } from "../AuthContext/AuthContext";
-
+import { PLAYLISTS_ACTIONS } from "../../Utilities";
 
 const PlaylistContext = createContext();
 
@@ -30,7 +30,7 @@ const PlaylistProvider = ({ children }) => {
         try{
             let result = await Promise.all(promises)
             playlsitDispatch({ 
-                type: 'setAll', 
+                type: PLAYLISTS_ACTIONS.SET_ALL, 
                 payload: result.reduce((acc, curr)=> ({ ...acc, ...curr.data}), { isLoading: false})
             })
         }catch(err){
@@ -38,7 +38,7 @@ const PlaylistProvider = ({ children }) => {
         }
     }
 
-    const clearAllPlaylists = () => playlsitDispatch({ type: 'clearAll'})
+    const clearAllPlaylists = () => playlsitDispatch({ type: PLAYLISTS_ACTIONS.CLEAR_ALL})
 
     useEffect(()=>{
         if(user){
@@ -51,7 +51,7 @@ const PlaylistProvider = ({ children }) => {
     const addtoLikes = async (video) => {
         try{
             await axios.post('/api/user/likes', { video }, config)
-            playlsitDispatch({ type: 'addtoLikes', payload: video})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_LIKES, payload: video})
             toastsuccess("Added to Likes")
         }catch(err){
             console.log(err)
@@ -62,7 +62,7 @@ const PlaylistProvider = ({ children }) => {
     const removeFromLikes = async (_id) => {
         try{
             await axios.delete('/api/user/likes/'+_id, config)
-            playlsitDispatch({ type: 'removeFromLikes', payload: _id})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_LIKES, payload: _id})
             toastsuccess("Removed From Likes")
         }catch(err){
             console.log(err)
@@ -86,7 +86,7 @@ const PlaylistProvider = ({ children }) => {
     const addtoWatchLater = async (video) => {
         try{
             await axios.post('/api/user/watchLater', { video }, config)
-            playlsitDispatch({ type: 'addtoWatchLater', payload: video})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_WATCH_LATER, payload: video})
             toastsuccess("Added to Watch Later")
         }catch(err){
             console.log(err)
@@ -97,7 +97,7 @@ const PlaylistProvider = ({ children }) => {
     const removeFromWatchLater = async (_id) => {
         try{
              await axios.delete('/api/user/watchLater/'+_id, config)
-            playlsitDispatch({ type: 'removeFromWatchLater', payload: _id})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_WATCH_LATER, payload: _id})
             toastsuccess("Removed from Likes")
         }catch(err){
             console.log(err)
@@ -121,7 +121,7 @@ const PlaylistProvider = ({ children }) => {
     const addtoHistory = async (video) => {
         try{
             await axios.post('/api/user/history', { video }, config)
-            playlsitDispatch({ type: 'addtoHistory', payload: video})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_HISTORY, payload: video})
         }catch(err){
             console.log(err)
             toasterror("An Error Occured")
@@ -131,7 +131,7 @@ const PlaylistProvider = ({ children }) => {
     const removeFromHistory = async (_id) => {
         try{
             await axios.delete('/api/user/history/'+_id, config)
-            playlsitDispatch({ type: 'removeFromHistory', payload: _id})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_HISTORY, payload: _id})
             toastsuccess("Removed From Likes")
         }catch(err){
             console.log(err)
@@ -142,7 +142,7 @@ const PlaylistProvider = ({ children }) => {
     const removeAllHistory = async () => {
         try{
             await axios.delete('/api/user/history/all', config)
-            playlsitDispatch({ type: 'removeAllHistory'})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_ALL_HISTORY})
             toastsuccess("All History Cleared")
         }catch(err){
             console.log(err)
@@ -153,7 +153,7 @@ const PlaylistProvider = ({ children }) => {
     const createNewPlaylist = async (playlist) => {
         try{
             let result = await axios.post('/api/user/playlists', { playlist }, config)
-            playlsitDispatch({ type: 'setPlaylists', payload: result.data.playlists})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.SET_PLAYLISTS, payload: result.data.playlists})
             toastsuccess("New Playlist Created")
         }catch(err){
            console.log(err)
@@ -164,7 +164,7 @@ const PlaylistProvider = ({ children }) => {
     const removeFromPlaylists = async (_id) => {
         try{
             let res = await axios.delete('/api/user/playlists/'+_id, config)
-            playlsitDispatch({ type: 'removeFromPlaylists', payload: _id})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_PLAYLISTS, payload: _id})
             toastsuccess("Removed Playlist")
         }catch(err){
             console.log(err)
@@ -175,7 +175,7 @@ const PlaylistProvider = ({ children }) => {
     const addVideoToPlaylist = async (video, playlistID) => {
         try{
             let result = await axios.post('/api/user/playlists/'+playlistID, { video }, config)
-            playlsitDispatch({ type: 'UpdatePlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.UPDATE_PLAYLISTS, payload: { _id: playlistID, playlist: result.data?.playlist}})
             toastsuccess("Added Video to Playlist")
         }catch(err){
             if(err.response.status === 409){
@@ -191,7 +191,7 @@ const PlaylistProvider = ({ children }) => {
     const removeVideoFromPlaylist = async (playlistID, videoID) => {
         try{
             let result = await axios.delete(`/api/user/playlists/${playlistID}/${videoID}`, config)
-            playlsitDispatch({ type: 'UpdatePlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+            playlsitDispatch({ type: PLAYLISTS_ACTIONS.UPDATE_PLAYLISTS, payload: { _id: playlistID, playlist: result.data?.playlist}})
             toastsuccess("Removed Video From Playlist")
         }catch(err){
             console.log(err)

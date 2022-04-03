@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { videoreducerfn } from "../../Reducers";
+import { VIDEO_ACTIONS } from "../../Utilities";
 
 const VideoContext = createContext()
 
@@ -16,18 +17,18 @@ const VideoProvider = ({ children }) => {
       });
 
     const getVideos = async () => {
-        videoDispatch({ type: 'videoLoading' , payload: true})
+        videoDispatch({ type:  VIDEO_ACTIONS.VIDEO_LOADING , payload: true})
         try{
             let videoresult = await axios.get('/api/videos')
             let categoryresult = await axios.get('/api/categories')        
 
-            videoDispatch({ type: 'setcategoriesandvideos', 
+            videoDispatch({ type: VIDEO_ACTIONS.SET_CATEGORIES_AND_VIDEOS, 
             payload: { videos: videoresult.data.videos, 
                 categories:  categoryresult.data.categories.map((item)=> item.categoryName)}})
             
         }catch(err){
             console.log(err)
-            videoDispatch({ type: 'videoLoading' , payload: false})
+            videoDispatch({ type: VIDEO_ACTIONS.VIDEO_LOADING , payload: false})
         }
     }
 
@@ -42,9 +43,8 @@ const VideoProvider = ({ children }) => {
         return videoState.videos?.filter((item)=> item.category === videoState.selectedCategory)
     }
 
-    const selectCategory = (category) => {
-        videoDispatch({ type: 'selectedCategory', payload: category})
-    }
+    const selectCategory = (category) => videoDispatch({ type: VIDEO_ACTIONS.SELECTED_CATEGORY, payload: category})
+    
 
     const filteredvideo = filtervideobyCategory()
 

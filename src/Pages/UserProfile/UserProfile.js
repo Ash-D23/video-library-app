@@ -1,17 +1,18 @@
 import axios from 'axios';
 import React, { useState, useReducer } from 'react';
 import { useAuthContext } from '../../Context';
-import { userProfileReducerFn } from '../../Reducers/UserProfileReducer/UserProfileReducerfn';
-import { toastsuccess, toasterror } from '../../Utilities/ToastMessage'
+import { userProfileReducerFn } from '../../Reducers';
+import { toastsuccess, toasterror } from '../../Utilities';
+import { USER_PROFILE_ACTIONS } from '../../Utilities';
 import './UserProfile.css';
 
 function UserProfile() {
 
-  const [editmode, seteditmode] = useState(false)
+  const [ editmode, seteditmode ] = useState(false)
 
   const { user, setuser } = useAuthContext()
 
-  const [userProfile, userProfileDispatch ] = useReducer( userProfileReducerFn , user )
+  const [ userProfile, userProfileDispatch ] = useReducer( userProfileReducerFn , user )
 
   const { userName, firstName, lastName, email, phone, gender } = userProfile
 
@@ -44,7 +45,7 @@ function UserProfile() {
                 <label className="form-label form-label--required">User Name</label>
                 <input 
                 type="text"
-                onChange={(e) => userProfileDispatch({ type: 'updateUserName', payload: e.target.value})}
+                onChange={(e) => userProfileDispatch({ type: USER_PROFILE_ACTIONS.UPDATE_USER_NAME, payload: e.target.value})}
                 className="form-field"
                 value={userName}
                 placeholder="Username"
@@ -55,7 +56,7 @@ function UserProfile() {
                 <label className="form-label form-label--required">First Name</label>
                 <input
                 type="text"
-                onChange={(e) => userProfileDispatch({ type: 'updateFirstName', payload: e.target.value})}
+                onChange={(e) => userProfileDispatch({ type: USER_PROFILE_ACTIONS.UPDATE_FIRST_NAME, payload: e.target.value})}
                 className="form-field"
                 value={firstName}
                 placeholder="Enter First Name"
@@ -66,7 +67,7 @@ function UserProfile() {
                 <label className="form-label form-label--required">Last Name</label>
                 <input 
                 type="text"
-                onChange={(e)=> userProfileDispatch({ type: 'updateLastName', payload: e.target.value})}
+                onChange={(e)=> userProfileDispatch({ type: USER_PROFILE_ACTIONS.UPDATE_LAST_NAME, payload: e.target.value})}
                 className="form-field"
                 value={lastName}
                 placeholder="Enter Last Name"
@@ -86,7 +87,7 @@ function UserProfile() {
                 <label className="form-label form-label--required">Phone No.</label>
                 <input 
                 type="text" 
-                onChange={(e) => userProfileDispatch({ type: 'updatePhone', payload: e.target.value})} 
+                onChange={(e) => userProfileDispatch({ type: USER_PROFILE_ACTIONS.UPDATE_PHONE, payload: e.target.value})} 
                 className="form-field" 
                 value={phone || ''} 
                 disabled={!editmode} />
@@ -97,7 +98,7 @@ function UserProfile() {
 
                 <input 
                 type="radio" 
-                onChange={(e) => userProfileDispatch({ type: 'updateGender', payload: e.target.value})}
+                onChange={(e) => userProfileDispatch({ type: USER_PROFILE_ACTIONS.UPDATE_GENDER, payload: e.target.value})}
                 checked={gender==='Male'}
                 className="form-radio"
                 name="gender" 
@@ -108,7 +109,7 @@ function UserProfile() {
 
                 <input 
                 type="radio" 
-                onChange={(e) => userProfileDispatch({ type: 'updateGender', payload: e.target.value})} 
+                onChange={(e) => userProfileDispatch({ type: USER_PROFILE_ACTIONS.UPDATE_GENDER, payload: e.target.value})} 
                 checked={gender==='Female'} 
                 className="form-radio" 
                 name="gender" 
