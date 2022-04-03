@@ -1,41 +1,74 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Sidebar() {
+
+    const navActive = ({ isActive }) => {
+        return {
+            color: isActive ? "#ffffff" : "",
+            backgroundColor: isActive ? "#0284c7" : "",
+            marginBottom: "0.5rem"
+        };
+    }
 
   return (
     <div className="video-drawer__container video__drawer container--sticky clr--secondary">
         <div className="drawer__navigation text-clr--primary">
-            <Link to="/explore">
+            <NavLink
+            style={navActive}
+            to={`/explore`}
+            end
+            key={'dashboard'}
+            >
                 <div className="drawer__navigation-items">
                     <i className='fas fa-play'></i>
                     <p>Dashboard</p>
                 </div>
-            </Link>
-            <Link to="/explore/likes">
+            </NavLink>
+
+            <NavLink
+            style={navActive}
+            to={`/explore/likes`}
+            key={'likes'}
+            >
                 <div className="drawer__navigation-items">
                     <i className="far fa-thumbs-up"></i>
                     <p>Likes</p>
                 </div>
-            </Link>
-            <Link to="/explore/history">
+            </NavLink>
+
+            <NavLink
+            style={navActive}
+            to={`/explore/history`}
+            key={'history'}
+            >
                 <div className="drawer__navigation-items">
                     <i className='fas fa-history'></i>
                     <p>History</p>
                 </div> 
-            </Link>
-            <Link to="/explore/watchlater">
+            </NavLink>
+
+            <NavLink
+            style={navActive}
+            to={`/explore/watchlater`}
+            key={'watchlater'}
+            >
                 <div className="drawer__navigation-items">
                     <i className='far fa-clock'></i>
                     <p>Watch later</p>
-                </div>    
-            </Link> 
-            <Link to="/explore/playlist">
+                </div> 
+            </NavLink>
+
+            <NavLink
+            style={navActive}
+            to={`/explore/playlist`}
+            key={'playlist'}
+            >
                 <div className="drawer__navigation-items">
                     <i className="fas fa-list"></i>
                     <p>Playlist</p>
-                </div>   
-            </Link>       
+                </div> 
+            </NavLink>      
         </div>
     </div>
     

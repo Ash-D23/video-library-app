@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate} from 'react-router-dom';
-import { useAuthContext } from './Context/AuthContext/AuthContext';
-import { Navigation, Footer } from './Components'
+import { useAuthContext } from './Context';
+import { Navigation, Footer } from './Components';
 import RequireAuth from './hooks/RequireAuth';
-import { HomePage, SingleVideoPage, UserProfile, VideoListingPage,
+import { HomePage, SingleVideoPage, UserProfile, VideoListingPage, NotFoundPage,
   Login, SignUp, Logout, Dashboard, LikePage, WatchLaterPage, HistoryPage, SinglePlaylistPage, PlaylistPage, SearchPage } from './Pages'
 import './App.css';
 
@@ -38,6 +38,8 @@ function App() {
         { user ? <Route path='/signup' element={<Navigate to="/" />} /> : <Route path='/signup' element={<SignUp />} /> }
 
         <Route path='/logout' element={<Logout />} />
+
+        <Route path="*" element={<NotFoundPage />} />
 
       </Routes>
 

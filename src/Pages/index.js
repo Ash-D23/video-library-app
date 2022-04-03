@@ -12,3 +12,4 @@ export { HistoryPage } from './HistoryPage/HistoryPage';
 export { SinglePlaylistPage } from './SinglePlaylistPage/SinglePlaylistPage';
 export { PlaylistPage } from './PlaylistPage/PlaylistPage';
 export { SearchPage } from './SearchPage/SearchPage';
+export { NotFoundPage } from './NotFoundPage/NotFoundPage';

@@ -59,8 +59,8 @@ function Navbar({ onMenuClick }) {
               <ul className="navbar__list-container text--medium margin-top--small">
                   
                   <li className="navbar__item">
-                      <Link to="/explore">Explore</Link>
-                  </li>
+                    <Link to="/explore">Explore</Link>
+                  </li>    
                   { user ? <li className="navbar__item">
                       <Link to="/profile">Profile</Link>
                   </li> : null }
