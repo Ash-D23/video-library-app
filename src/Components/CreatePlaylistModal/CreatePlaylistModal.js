@@ -8,6 +8,7 @@ function CreatePlaylistModal({ showModal, closeModal}) {
 
   const [Name, setName] = useState('')
   const [Description, setDescription] = useState('')
+  const [errorvalues, seterrorvalues] = useState({})
 
   const reset = () => {
     setName('')
@@ -19,10 +20,32 @@ function CreatePlaylistModal({ showModal, closeModal}) {
       closeModal()
   }
 
+  const validateSubmit = () => {
+    const errors = {}
+
+    if(Name.length === 0){
+      errors.Name = "Name Required"
+    }
+
+    if(Description.length === 0){
+      errors.Description = "Description Required"
+    }
+
+    return errors
+  }
+
   const handlesubmit = () => {
-    createNewPlaylist({ title: Name, description: Description})
-    reset()
-    closeModal()
+
+    const errors = validateSubmit()
+
+    if(Object.keys(errors).length === 0){
+      createNewPlaylist({ title: Name, description: Description})
+      reset()
+      closeModal()
+    }else{
+      seterrorvalues(errors)
+    }
+    
   }
 
   return (
@@ -37,10 +60,12 @@ function CreatePlaylistModal({ showModal, closeModal}) {
                 <div className="form-element--column">
                     <label className="form-label form-label--required">Enter Playlist Name</label>
                     <input type="text" className="form-field" value={Name} onChange={(e)=> setName(e.target.value)} placeholder="Enter Playlist Name"/>
+                    <span className="error--message margin--small">{errorvalues.Name}</span>
                 </div>
                 <div className="form-element--column">
                     <label className="form-label form-label--required">Enter Description</label>
                     <input type="text" className="form-field" value={Description} onChange={(e)=> setDescription(e.target.value)} placeholder="Enter Address"/>
+                    <span className="error--message margin--small">{errorvalues.Description}</span>
                 </div>
               </div>
           </div>

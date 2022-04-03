@@ -23,6 +23,7 @@
 .card--video{
     cursor: pointer;
     width: 28rem;
+    overflow: visible;
 }
 
 .video--play{
@@ -41,6 +42,21 @@
 
 .card--dismiss{
     z-index: 6;
+}
+
+.video--menu{
+    border-radius: 5px;
+    padding: 0.75rem 0.5rem;
+    background-color: #f1f5f9;
+    border: 1px solid var(--clr-grey);
+    position: absolute;
+    right: 15px;
+    width: 20rem;
+    z-index: 2;
+}
+
+.video--menu p:hover{
+    color: var(--clr-secondary)
 }
 
 @media only screen and (max-width: 600px) {

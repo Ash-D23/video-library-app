@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { initialPlaylist, playlistReducerFn } from "../../Reducers";
+import { toasterror, toastsuccess } from "../../Utilities/ToastMessage";
 import { useAuthContext } from "../AuthContext/AuthContext";
 
 
@@ -49,20 +50,23 @@ const PlaylistProvider = ({ children }) => {
 
     const addtoLikes = async (video) => {
         try{
-             await axios.post('/api/user/likes', { video }, config)
+            await axios.post('/api/user/likes', { video }, config)
             playlsitDispatch({ type: 'addtoLikes', payload: video})
-
+            toastsuccess("Added to Likes")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
     const removeFromLikes = async (_id) => {
         try{
-             await axios.delete('/api/user/likes/'+_id, config)
+            await axios.delete('/api/user/likes/'+_id, config)
             playlsitDispatch({ type: 'removeFromLikes', payload: _id})
+            toastsuccess("Removed From Likes")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
@@ -81,10 +85,12 @@ const PlaylistProvider = ({ children }) => {
 
     const addtoWatchLater = async (video) => {
         try{
-             await axios.post('/api/user/watchLater', { video }, config)
+            await axios.post('/api/user/watchLater', { video }, config)
             playlsitDispatch({ type: 'addtoWatchLater', payload: video})
+            toastsuccess("Added to Watch Later")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
@@ -92,8 +98,10 @@ const PlaylistProvider = ({ children }) => {
         try{
              await axios.delete('/api/user/watchLater/'+_id, config)
             playlsitDispatch({ type: 'removeFromWatchLater', payload: _id})
+            toastsuccess("Removed from Likes")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
@@ -112,28 +120,33 @@ const PlaylistProvider = ({ children }) => {
 
     const addtoHistory = async (video) => {
         try{
-             await axios.post('/api/user/history', { video }, config)
+            await axios.post('/api/user/history', { video }, config)
             playlsitDispatch({ type: 'addtoHistory', payload: video})
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
     const removeFromHistory = async (_id) => {
         try{
-             await axios.delete('/api/user/history/'+_id, config)
+            await axios.delete('/api/user/history/'+_id, config)
             playlsitDispatch({ type: 'removeFromHistory', payload: _id})
+            toastsuccess("Removed From Likes")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
     const removeAllHistory = async () => {
         try{
-             await axios.delete('/api/user/history/all', config)
+            await axios.delete('/api/user/history/all', config)
             playlsitDispatch({ type: 'removeAllHistory'})
+            toastsuccess("All History Cleared")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
@@ -141,8 +154,10 @@ const PlaylistProvider = ({ children }) => {
         try{
             let result = await axios.post('/api/user/playlists', { playlist }, config)
             playlsitDispatch({ type: 'setPlaylists', payload: result.data.playlists})
+            toastsuccess("New Playlist Created")
         }catch(err){
            console.log(err)
+           toasterror("An Error Occured")
         }
     }
 
@@ -150,8 +165,10 @@ const PlaylistProvider = ({ children }) => {
         try{
             let res = await axios.delete('/api/user/playlists/'+_id, config)
             playlsitDispatch({ type: 'removeFromPlaylists', payload: _id})
+            toastsuccess("Removed Playlist")
         }catch(err){
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
 
@@ -159,20 +176,26 @@ const PlaylistProvider = ({ children }) => {
         try{
             let result = await axios.post('/api/user/playlists/'+playlistID, { video }, config)
             playlsitDispatch({ type: 'UpdatePlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+            toastsuccess("Added Video to Playlist")
         }catch(err){
-            console.log(err.response.status);
-            console.log(err)
+            if(err.response.status === 409){
+                toasterror("VIdeo Already in Playlist")
+            }else{
+                console.log(err)
+                toasterror("An Error Occured")
+            }
+            
         }
     }
 
     const removeVideoFromPlaylist = async (playlistID, videoID) => {
-        console.log(videoID, playlistID)
         try{
             let result = await axios.delete(`/api/user/playlists/${playlistID}/${videoID}`, config)
             playlsitDispatch({ type: 'UpdatePlaylist', payload: { _id: playlistID, playlist: result.data?.playlist}})
+            toastsuccess("Removed Video From Playlist")
         }catch(err){
-            console.log(err.response.status);
             console.log(err)
+            toasterror("An Error Occured")
         }
     }
     

@@ -49,6 +49,10 @@
     max-height: 20rem;
 }
 
+.addPlaylist{
+    z-index: 5;
+}
+
 @media only screen and (max-width: 600px){
 
     .addPlaylist .modal__container {

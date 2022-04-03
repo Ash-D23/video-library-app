@@ -1,19 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePlaylist } from '../../Context';
+import { AddtoPlaylistModal } from '../AddtoPlaylistModal/AddtoPlaylistModal';
 import './VideoCard.css';
 
 function VideoCard({ video, removeHandler, showRemove}) {
 
   const { title, creator, _id } = video;
 
-  const { addtoHistory } = usePlaylist()
+  const [showMenu, setshowMenu] = useState(false)
+  const [showModal, setshowModal] = useState(false)
+
+  const { addtoHistory, addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } = usePlaylist()
+
+  const checkVideoInWatchLater = isVideoInWatchLater(video?._id)
+
+  const toggleWatchLater = () => {
+      setshowMenu(false)
+      checkVideoInWatchLater ? removeFromWatchLater(video?._id) : addtoWatchLater(video) 
+  }
 
   const navigate = useNavigate();
 
   const handleClick = () => {
     addtoHistory(video)
     navigate("/video/"+_id)
+  }
+
+  const showPlaylist = () => {
+    setshowMenu(false)
+    setshowModal(true)
   }
   
   return (
@@ -30,17 +46,28 @@ function VideoCard({ video, removeHandler, showRemove}) {
         </div>
         { showRemove ?  <i onClick={() => removeHandler(_id)} className="fas fa-times clr--primary card--dismiss card-position--tr"></i> : null}
         <div className="card__body padding--medium">
-            <div className="card__heading margin-tb--small">
+            <div className="card__heading container--relative">
                 <div className="container__flex--spacebetween">
                     <p className="text--medium">{title}</p>
-                    <i className="fas fa-ellipsis-v"></i>
+                    <i onClick={() => setshowMenu((prev) => !prev)} className="fas fa-ellipsis-v"></i>
                 </div>
             </div> 
-            <div className="card__description margin-bottom--small">
+            {
+                showMenu ? <div className='video--menu'>
+                       { !checkVideoInWatchLater ? <p onClick={toggleWatchLater} className='margin-bottom--medium'>
+                            <i className='far fa-clock margin-lr--small'></i>Watch Later
+                        </p> : <p onClick={toggleWatchLater} className='margin-bottom--medium'>
+                            <i className="far fa-trash-alt margin-lr--small"></i>Watch Later
+                        </p> }
+                        <p onClick={showPlaylist}><i className="fas fa-list margin-lr--small"></i>Add to Playlist</p>
+                    </div> : null
+            }
+            <div className="card__description margin-tb--small">
                 <p className="clr--grey">{creator}</p>
             </div>
             
         </div> 
+        <AddtoPlaylistModal video={video} showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )
 }

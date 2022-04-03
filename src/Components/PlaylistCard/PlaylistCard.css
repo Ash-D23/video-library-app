@@ -1,11 +1,29 @@
 .playlist-card__container{
+    max-width: 20rem;
+    border: 1px solid var(--clr-grey);
+    padding-top: var(--padding-medium);
+    position: relative;
+}
+
+.playlist-card__image img{
+    max-width: 20rem;
+    max-height: 20rem
+}
+
+.playlist-card__body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-width: 15rem;
-    padding: var(--padding-medium);
-    color: var(--text-clr-secondary);
+    padding: var(--padding-small);
     background-color: var(--clr-light);
-    border-radius: 10px;
+    color: var(--text-clr-secondary);
+    opacity: 0.8;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.playlist-card--delete:hover{
+    color: var(--clr-error);
     cursor: pointer
 }

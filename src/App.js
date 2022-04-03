@@ -5,6 +5,8 @@ import RequireAuth from './hooks/RequireAuth';
 import { HomePage, SingleVideoPage, UserProfile, VideoListingPage, NotFoundPage,
   Login, SignUp, Logout, Dashboard, LikePage, WatchLaterPage, HistoryPage, SinglePlaylistPage, PlaylistPage, SearchPage } from './Pages'
 import './App.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -44,6 +46,8 @@ function App() {
       </Routes>
 
       <Footer />
+
+      <ToastContainer />
     </>
   );
 }

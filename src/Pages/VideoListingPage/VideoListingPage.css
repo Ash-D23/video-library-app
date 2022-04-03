@@ -75,7 +75,7 @@
 }
 
 .sidebar__active{
-    background-color: var(--clr-secondary);
+    background-color: var(--clr-light);
     color: var(--text-clr-secondary)
 }
 
