@@ -37,9 +37,9 @@ const VideoProvider = ({ children }) => {
 
     const filtervideobyCategory = () => {
         if(videoState.selectedCategory === "All"){
-            return videos
+            return videoState.videos
         }
-        return videos.filter((item)=> item.category === videoState.selectedCategory)
+        return videoState.videos?.filter((item)=> item.category === videoState.selectedCategory)
     }
 
     const selectCategory = (category) => {

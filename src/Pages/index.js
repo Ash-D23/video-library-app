@@ -11,3 +11,4 @@ export { WatchLaterPage } from './WatchLaterPage/WatchLaterPage';
 export { HistoryPage } from './HistoryPage/HistoryPage';
 export { SinglePlaylistPage } from './SinglePlaylistPage/SinglePlaylistPage';
 export { PlaylistPage } from './PlaylistPage/PlaylistPage';
+export { SearchPage } from './SearchPage/SearchPage';
