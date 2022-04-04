@@ -27,7 +27,7 @@ const VideoProvider = ({ children }) => {
                 categories:  categoryresult.data.categories.map((item)=> item.categoryName)}})
             
         }catch(err){
-            console.log(err)
+            console.error(err)
             videoDispatch({ type: VIDEO_ACTIONS.VIDEO_LOADING , payload: false})
         }
     }

@@ -14,7 +14,7 @@ function HomePage() {
       let categoryresult = await axios.get('/api/categories')
       setcategories(categoryresult.data.categories)
     }catch(err){
-      console.log(err)
+      console.error(err)
     }finally{
       setisloading(false)
     }

@@ -33,7 +33,7 @@ const PlaylistProvider = ({ children }) => {
                 payload: result.reduce((acc, curr)=> ({ ...acc, ...curr.data}), { isLoading: false})
             })
         }catch(err){
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -53,7 +53,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_LIKES, payload: video})
             toastsuccess("Added to Likes")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -64,7 +64,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_LIKES, payload: _id})
             toastsuccess("Removed From Likes")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -88,7 +88,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_WATCH_LATER, payload: video})
             toastsuccess("Added to Watch Later")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -99,7 +99,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_WATCH_LATER, payload: _id})
             toastsuccess("Removed from Watch Later")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -122,7 +122,7 @@ const PlaylistProvider = ({ children }) => {
             await axios.post('/api/user/history', { video }, config)
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.ADD_TO_HISTORY, payload: video})
         }catch(err){
-            console.log(err)
+            console.error(err)
         }
     }
 
@@ -132,7 +132,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_HISTORY, payload: _id})
             toastsuccess("Removed From History")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -143,7 +143,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_ALL_HISTORY})
             toastsuccess("All History Cleared")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -154,7 +154,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.SET_PLAYLISTS, payload: result.data.playlists})
             toastsuccess("New Playlist Created")
         }catch(err){
-           console.log(err)
+           console.error(err)
            toasterror("An Error Occured")
         }
     }
@@ -165,7 +165,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.REMOVE_FROM_PLAYLISTS, payload: _id})
             toastsuccess("Removed Playlist")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
@@ -179,7 +179,7 @@ const PlaylistProvider = ({ children }) => {
             if(err.response.status === 409){
                 toasterror("VIdeo Already in Playlist")
             }else{
-                console.log(err)
+                console.error(err)
                 toasterror("An Error Occured")
             }
             
@@ -192,7 +192,7 @@ const PlaylistProvider = ({ children }) => {
             playlsitDispatch({ type: PLAYLISTS_ACTIONS.UPDATE_PLAYLISTS, payload: { _id: playlistID, playlist: result.data?.playlist}})
             toastsuccess("Removed Video From Playlist")
         }catch(err){
-            console.log(err)
+            console.error(err)
             toasterror("An Error Occured")
         }
     }
