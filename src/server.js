@@ -16,8 +16,6 @@ import {
   getAllVideosHandler,
   getVideoHandler,
 } from "./backend/controllers/VideoController";
-import { videos } from "./backend/db/videos";
-import { categories } from "./backend/db/categories";
 import {
   getAllCategoriesHandler,
   getCategoryHandler,
@@ -27,6 +25,12 @@ import {
   addItemToLikedVideos,
   removeItemFromLikedVideos,
 } from "./backend/controllers/LikeController";
+import {
+  getNotes,
+  getNotesbyVideo,
+  addNotes,
+  removeNote,
+} from "./backend/controllers/NotesController";
 import {
   getWatchLaterVideosHandler,
   addVideoToWatchLaterHandler,
@@ -41,7 +45,10 @@ import {
   addVideoToPlaylistHandler,
   removeVideoFromPlaylistHandler,
 } from "./backend/controllers/PlaylistController";
+import { videos } from "./backend/db/videos";
+import { categories } from "./backend/db/categories";
 import { users } from "./backend/db/users";
+
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -56,7 +63,8 @@ export function makeServer({ environment = "development" } = {}) {
       like: Model,
       history: Model,
       playlist: Model,
-      watchLater: Model
+      watchLater: Model,
+      notes: Model
     },
 
     // Runs on the start of the server
@@ -72,7 +80,8 @@ export function makeServer({ environment = "development" } = {}) {
           likes: [],
           history: [],
           playlists: [],
-          watchLater: []
+          watchLater: [],
+          notes: []
         })
       );
     },
@@ -95,6 +104,12 @@ export function makeServer({ environment = "development" } = {}) {
       // categories routes (public)
       this.get("/categories", getAllCategoriesHandler.bind(this));
       this.get("/categories/:categoryId", getCategoryHandler.bind(this));
+
+      //notes
+      this.get("/notes", getNotes.bind(this));
+      this.get("/notes/:videoId", getNotesbyVideo.bind(this));
+      this.post("/addNotes", addNotes.bind(this));
+      this.delete("/removeNote/:Id", removeNote.bind(this));
 
       // likes routes (private)
       this.get("/user/likes", getLikedVideosHandler.bind(this));

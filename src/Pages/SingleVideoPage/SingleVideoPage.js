@@ -100,7 +100,7 @@ function SingleVideoPage() {
             </div>
           </div>
       </div>
-      <Notes />
+      <Notes videoId={params.id} />
       <AddtoPlaylistModal video={singlevideo} showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )

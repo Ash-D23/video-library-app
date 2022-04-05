@@ -7,6 +7,7 @@ import { HomePage, SingleVideoPage, UserProfile, VideoListingPage, NotFoundPage,
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Mockman from 'mockman-js';
 
 function App() {
 
@@ -40,6 +41,8 @@ function App() {
         { user ? <Route path='/signup' element={<Navigate to="/" />} /> : <Route path='/signup' element={<SignUp />} /> }
 
         <Route path='/logout' element={<Logout />} />
+
+        <Route path="/testApi" element={<Mockman />} />
 
         <Route path="*" element={<NotFoundPage />} />
 
