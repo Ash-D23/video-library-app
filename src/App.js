@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate} from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation} from 'react-router-dom';
 import { useAuthContext } from './Context';
 import { Navigation, Footer } from './Components';
 import RequireAuth from './hooks/RequireAuth';
@@ -12,6 +12,10 @@ import Mockman from 'mockman-js';
 function App() {
 
   const { user } = useAuthContext()
+
+  const location = useLocation()
+
+  const pathName = location.state?.from || '/'
   
   return (
     <>
@@ -36,7 +40,7 @@ function App() {
 
         <Route path="/search" element={<SearchPage />} />
 
-        { user ? <Route path='/login' element={<Navigate to="/" />} /> : <Route path='/login' element={<Login />} /> }
+        { user ? <Route path='/login' element={<Navigate to={pathName} />} /> : <Route path='/login' element={<Login />} /> }
     
         { user ? <Route path='/signup' element={<Navigate to="/" />} /> : <Route path='/signup' element={<SignUp />} /> }
 
