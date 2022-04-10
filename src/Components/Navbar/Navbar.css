@@ -81,7 +81,7 @@
     margin-top: var(--margin-small);
     padding-top: var(--padding-small);
     z-index: 3;
-    overflow-y: scroll;
+    overflow-y: auto;
     border: 1px solid var(--clr-grey);
 }
 
@@ -89,8 +89,17 @@
     display: block;
 }
 
+.search__items--mobiledisplay{
+    display: none;
+}
+
 .search__items--list{
     padding: var(--padding-small);
+}
+
+.search__items--list:hover{
+    cursor: pointer;
+    background-color: var(--clr-grey);
 }
 
 .video--mobile{
@@ -185,4 +194,11 @@
         display: block;
     }
 
+    .search__items--mobiledisplay{
+        display: block;
+    }
+
+    .search__items{
+        margin-top: 0;
+    }
 }

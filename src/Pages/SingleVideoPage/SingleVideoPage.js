@@ -11,6 +11,8 @@ function SingleVideoPage() {
   const [showModal, setshowModal] = useState(false)
   const [isLoading, setisLoading] = useState(true)
 
+  const params = useParams()
+
   const { user } = useAuthContext()
 
   const navigate = useNavigate()
@@ -26,10 +28,6 @@ function SingleVideoPage() {
     }
   }
 
-  useEffect(() => {
-    getSingleVideo()
-  }, [])
-
   const onAddtoPlaylist = () => {
     if(!user){
       navigate('/login')
@@ -37,8 +35,6 @@ function SingleVideoPage() {
     }
     setshowModal(true)
   }
-
-  const params = useParams()
 
   const { addtoLikes, removeFromLikes, isVideoInLikes,
     addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } = usePlaylist()
@@ -62,6 +58,10 @@ function SingleVideoPage() {
     }
     checkVideoInWatchLater ? removeFromWatchLater(singlevideo?._id) : addtoWatchLater(singlevideo)
   }
+
+  useEffect(() => {
+    getSingleVideo()
+  }, [params])
 
   return isLoading ? <Loader /> : (
     <div className='single-video__container'>

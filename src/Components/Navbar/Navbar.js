@@ -19,6 +19,7 @@ function Navbar({ onMenuClick }) {
     const searchSubmit = () => {
       let path = '/search?search='+search
       setsearch('')
+      setshowSearchItems(false)
       navigate(path)
     }
 
@@ -32,6 +33,16 @@ function Navbar({ onMenuClick }) {
         }
 
         return videos.filter((item) => item.title.toLowerCase().includes(search.toLowerCase() ))
+    }
+
+    const handleNavigate = (e, id) => {
+        setshowSearchItems(false)
+        navigate('/video/'+id)
+    }
+
+    const handleClear = () => {
+        setsearch('')
+        setshowSearchItems(false)
     }
 
     const SearchVideos = filterVideoBySearch(videoState.videos, search)
@@ -61,13 +72,13 @@ function Navbar({ onMenuClick }) {
                         <input 
                         onChange={(e)=>setsearch(e.target.value)} 
                         onFocus={() => setshowSearchItems(true)}
-                        onBlur={()=>setshowSearchItems(false)}
                         value={search} 
                         className="search__input" 
                         placeholder="Search" 
                         type="text" 
                         onKeyDown={searchHandler}
                         />
+                        { showSearchItems ? <i onClick={handleClear} className="fas fa-times padding--small text--medium clr--secondary pointer"></i> : null }
                     </div>
                     { SearchVideos.length === 0 ? 
                     <div style={{ height: `2rem`}}
@@ -76,7 +87,7 @@ function Navbar({ onMenuClick }) {
                    </div>
                     : <div style={{ height: `${2 + SearchVideos.length*2}rem`}}
                      className={`search__items ${ showSearchItems ? `search__items--display` : ''}`}>
-                        {SearchVideos?.map((item) => <p className='search__items--list'>{item.title}</p>)}
+                        {SearchVideos?.map((item) => <p onClick={(e) => handleNavigate(e, item?._id)} className='search__items--list'>{item.title}</p>)}
                     </div>}
                 </div>
               <ul className="navbar__list-container text--medium margin-top--small">
@@ -100,12 +111,23 @@ function Navbar({ onMenuClick }) {
                   <input 
                       onChange={(e)=>setsearch(e.target.value)} 
                       value={search} 
+                      onFocus={() => setshowSearchItems(true)}
                       className="search__input" 
                       placeholder="Search" 
                       type="text" 
                       onKeyDown={searchHandler}
                       />
+                    { showSearchItems ? <i onClick={handleClear} className="fas fa-times padding--small text--medium clr--secondary pointer"></i> : null }
               </div>
+              { SearchVideos.length === 0 ? 
+                    <div style={{ height: `2rem`}}
+                    className={`search__items ${ showSearchItems ? `search__items--mobiledisplay` : ''}`}>
+                       <p className='search__items--list text--center'>No videos Found</p>
+                   </div>
+                    : <div style={{ height: `${2 + SearchVideos.length*2}rem`}}
+                     className={`search__items ${ showSearchItems ? `search__items--mobiledisplay` : ''}`}>
+                        {SearchVideos?.map((item) => <p onClick={(e) => handleNavigate(e, item?._id)} className='search__items--list'>{item.title}</p>)}
+              </div>}
           </div>
       </header>
     )
