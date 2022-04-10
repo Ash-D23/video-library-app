@@ -75,12 +75,13 @@
 .search__items{
     width: 100%;
     min-height: 4rem;
+    max-height: 40rem;
     background-color: #f4f4f5;
     position: absolute;
     display: none;
     margin-top: var(--margin-small);
     padding-top: var(--padding-small);
-    z-index: 3;
+    z-index: 4;
     overflow-y: auto;
     border: 1px solid var(--clr-grey);
 }

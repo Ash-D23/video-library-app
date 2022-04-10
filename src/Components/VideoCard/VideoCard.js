@@ -48,9 +48,7 @@ function VideoCard({ video, removeHandler, showRemove}) {
     <div  className="card card--video margin--medium container--relative">
         <div onClick={handleClick} className="card__image--container container--relative badge-content">
             <img  className="card__image" src="/Images/video.jpg" />
-            
             <div className='video-image--overlay'>
-
             </div>
             <div className="video--play">
                 <i className="fab fa-youtube text--large"></i>

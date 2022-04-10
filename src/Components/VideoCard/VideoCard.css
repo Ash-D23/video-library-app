@@ -1,15 +1,24 @@
 .video-image--overlay{
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0);
     top:0;
     position: absolute;
     overflow: hidden;
     z-index: 2;
 }
 
+.card--video:hover{
+    transform: scale(1.1);
+    overflow: visible;
+    z-index: 3;
+}
+
+.card--video .video-image--overlay{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .card--video:hover .video-image--overlay{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .card--video:hover .video--play i{
@@ -64,10 +73,15 @@
     .card--video .card__image--container {
         height: 20rem;
     }
-    
 
     .card--video{
         width: 25rem
+    }
+
+    .card--video:hover{
+        transform: none;
+        overflow: visible;
+        z-index: 3;
     }
 
 }
