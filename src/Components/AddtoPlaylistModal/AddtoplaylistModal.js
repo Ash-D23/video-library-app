@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { usePlaylist } from '../../Context'
+import { toasterror } from '../../Utilities'
 
 function AddtoPlaylistModal({ showModal, closeModal, video}) {
 
-  const { playlistState, addVideoToPlaylist } = usePlaylist()
+  const [ showPlaylistInput, setshowPlaylistInput ] = useState(false)
+  const [ playlistInput, setPlaylistInput ] = useState('')
+
+  const { playlistState, addVideoToPlaylist , createNewPlaylist} = usePlaylist()
 
   const handlePlaylistClick = (_id) => {
     addVideoToPlaylist(video, _id)
     closeModal()
+  }
+
+  const handleSubmit = () => {
+    if(playlistInput === ''){
+      toasterror("Enter Name")
+      return 
+    }
+
+    createNewPlaylist({ title: playlistInput })
+    setPlaylistInput('')
   }
 
   return (
@@ -18,7 +32,15 @@ function AddtoPlaylistModal({ showModal, closeModal, video}) {
               <i className="fas fa-times modal__close" onClick={closeModal}></i>
           </div>
           <div className="modal__body margin-tb--large">
-              <div className="playlist__body padding-right--small">
+              <div className='container__flex--center padding-bottom--medium'>
+                <button onClick={ () => setshowPlaylistInput(true) } className='btn btn--secondary'>Create Playlist</button>
+              </div>
+              { showPlaylistInput ? 
+              <div className='padding-bottom--medium playlist__input--container'>
+                <input className='playlist__input' onChange={(e)=> setPlaylistInput(e.target.value)} value={playlistInput} placeholder='Enter Playlist Name'/>
+                <button onClick={handleSubmit} className='btn btn--secondary'>Add</button>
+              </div> : null }
+              <div className="playlist__body">
                 {playlistState.playlists?.map((item) => {
                   return <div key={item._id} onClick={() => handlePlaylistClick(item._id)} className='playlist--item padding-tb--medium'>
                     <p className='text--center'>{item.title}</p>
