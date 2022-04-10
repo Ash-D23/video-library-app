@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../../Context';
-import './Navbar.css'
+import { useAuthContext, useVideo } from '../../Context';
+import './Navbar.css';
 
 function Navbar({ onMenuClick }) {
   
     const [search, setsearch] = useState('')
+    const [showSearchItems, setshowSearchItems] = useState(false)
   
     let navigate = useNavigate()
   
@@ -22,6 +23,20 @@ function Navbar({ onMenuClick }) {
     }
 
     const { user } = useAuthContext()
+
+    const { videoState } = useVideo();
+
+    const filterVideoBySearch = (videos, search) => {
+        if(search === null){
+            return videos
+        }
+
+        return videos.filter((item) => item.title.toLowerCase().includes(search.toLowerCase() ))
+    }
+
+    const SearchVideos = filterVideoBySearch(videoState.videos, search)
+
+    console.log(SearchVideos)
   
     return (
       <header>
@@ -40,22 +55,30 @@ function Navbar({ onMenuClick }) {
               <div className='navbar__logo video--mobile'>
                 <Link to="/explore"><i className="fas fa-play-circle clr--secondary padding--small"></i></Link>
               </div>
-              <div className='container--relative'>
-                          <div className="search__container">
-                              <i onClick={searchSubmit} className="fas fa-search padding--small text--medium clr--secondary"></i>
-                              <input 
-                              onChange={(e)=>setsearch(e.target.value)} 
-                              value={search} 
-                              className="search__input" 
-                              placeholder="Search" 
-                              type="text" 
-                              onKeyDown={searchHandler}
-                              />
-                          </div>
-                          <div className="search__items">
-  
-                          </div>
-                      </div>
+                <div className='container--relative'>
+                    <div className="search__container">
+                        <i onClick={searchSubmit} className="fas fa-search padding--small text--medium clr--secondary"></i>
+                        <input 
+                        onChange={(e)=>setsearch(e.target.value)} 
+                        onFocus={() => setshowSearchItems(true)}
+                        onBlur={()=>setshowSearchItems(false)}
+                        value={search} 
+                        className="search__input" 
+                        placeholder="Search" 
+                        type="text" 
+                        onKeyDown={searchHandler}
+                        />
+                    </div>
+                    { SearchVideos.length === 0 ? 
+                    <div style={{ height: `2rem`}}
+                    className={`search__items ${ showSearchItems ? `search__items--display` : ''}`}>
+                       <p className='search__items--list text--center'>No videos Found</p>
+                   </div>
+                    : <div style={{ height: `${2 + SearchVideos.length*2}rem`}}
+                     className={`search__items ${ showSearchItems ? `search__items--display` : ''}`}>
+                        {SearchVideos?.map((item) => <p className='search__items--list'>{item.title}</p>)}
+                    </div>}
+                </div>
               <ul className="navbar__list-container text--medium margin-top--small">
                   
                   <li className="navbar__item">
