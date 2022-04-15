@@ -11,6 +11,12 @@ function AddtoPlaylistModal({ showModal, closeModal, video}) {
 
   const handlePlaylistClick = (_id) => {
     addVideoToPlaylist(video, _id)
+    handleClose()
+  }
+
+  const handleClose = () => {
+    setPlaylistInput('')
+    setshowPlaylistInput(false)
     closeModal()
   }
 
@@ -29,7 +35,7 @@ function AddtoPlaylistModal({ showModal, closeModal, video}) {
       <div className="modal__container">
       <div className="modal__header container__flex--center margin--medium">
               <h3 className="text--large">Add to Playlist</h3>
-              <i className="fas fa-times modal__close" onClick={closeModal}></i>
+              <i className="fas fa-times modal__close" onClick={handleClose}></i>
           </div>
           <div className="modal__body margin-tb--large">
               <div className='container__flex--center padding-bottom--medium'>
@@ -55,7 +61,7 @@ function AddtoPlaylistModal({ showModal, closeModal, video}) {
               </div>
           </div>
           <div className="container__flex--center">
-              <button onClick={closeModal} className="btn btn--secondary">Cancel</button>
+              <button onClick={handleClose} className="btn btn--secondary">Close</button>
           </div>
       </div>
     </div>
