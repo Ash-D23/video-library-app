@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext, usePlaylist } from '../../Context';
+import { CalculateTimeDifference } from '../../Utilities';
 import './VideoCard.css';
 
 function VideoCard({ video, removeHandler, showRemove, showPlaylist}) {
 
-  const { title, creator, _id } = video;
+  const { title, creator, createDate, _id } = video;
 
   const [showMenu, setshowMenu] = useState(false)
 
@@ -41,6 +42,8 @@ function VideoCard({ video, removeHandler, showRemove, showPlaylist}) {
     setshowMenu(false)
     showPlaylist(video)
   }
+
+  const dateDifference = CalculateTimeDifference(createDate)
   
   return (
     <div  className="card card--video margin--medium container--relative">
@@ -70,8 +73,9 @@ function VideoCard({ video, removeHandler, showRemove, showPlaylist}) {
                         <p onClick={handleshowPlaylist}><i className="fas fa-list margin-lr--small"></i>Add to Playlist</p>
                     </div> : null
             }
-            <div className="card__description margin-tb--small">
+            <div className="container__flex--spacebetween container__flex--wrap card__description margin-tb--small">
                 <p className="clr--grey">{creator}</p>
+                <p className='clr--grey'>{dateDifference}</p>
             </div>
             
         </div> 

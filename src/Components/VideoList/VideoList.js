@@ -14,7 +14,7 @@ function VideoList({ videos, showRemove, removeHandler }) {
   }
 
   return (
-    <div className="container__flex--center container__flex--wrap">
+    <div className="container__flex--center container__flex--wrap video__list--container">
       {videos?.map((video)=>{
         return <VideoCard key={video._id} video={video} showRemove={showRemove} removeHandler={removeHandler} showPlaylist={showPlaylist} />
       })}

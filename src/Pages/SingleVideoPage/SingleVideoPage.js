@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Loader, Notes, AddtoPlaylistModal } from '../../Components';
 import { useAuthContext, usePlaylist } from '../../Context';
+import { FormattedDate } from '../../Utilities';
 import './SingleVideoPage.css';
 
 function SingleVideoPage() {
@@ -63,6 +64,8 @@ function SingleVideoPage() {
     getSingleVideo()
   }, [params])
 
+  const videoDate = FormattedDate(new Date(singlevideo?.createDate))
+
   return isLoading ? <Loader /> : (
     <div className='single-video__container'>
       <div className="single-video--content">
@@ -89,7 +92,7 @@ function SingleVideoPage() {
                     </div>
                   </div>
                   <div>
-                    Views | 4 hous ago
+                    {videoDate}
                   </div>
                 </div>
             </div>
