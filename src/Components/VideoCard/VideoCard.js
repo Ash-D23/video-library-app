@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext, usePlaylist } from '../../Context';
-import { AddtoPlaylistModal } from '../AddtoPlaylistModal/AddtoPlaylistModal';
 import './VideoCard.css';
 
-function VideoCard({ video, removeHandler, showRemove}) {
+function VideoCard({ video, removeHandler, showRemove, showPlaylist}) {
 
   const { title, creator, _id } = video;
 
   const [showMenu, setshowMenu] = useState(false)
-  const [showModal, setshowModal] = useState(false)
 
   const { user } = useAuthContext()
 
@@ -35,13 +33,13 @@ function VideoCard({ video, removeHandler, showRemove}) {
     navigate("/video/"+_id)
   }
 
-  const showPlaylist = () => {
+  const handleshowPlaylist = () => {
     if(!user){
         navigate("/login")
         return
     }
     setshowMenu(false)
-    setshowModal(true)
+    showPlaylist(video)
   }
   
   return (
@@ -69,7 +67,7 @@ function VideoCard({ video, removeHandler, showRemove}) {
                         </p> : <p onClick={toggleWatchLater} className='margin-bottom--medium'>
                             <i className="far fa-trash-alt margin-lr--small"></i>Watch Later
                         </p> }
-                        <p onClick={showPlaylist}><i className="fas fa-list margin-lr--small"></i>Add to Playlist</p>
+                        <p onClick={handleshowPlaylist}><i className="fas fa-list margin-lr--small"></i>Add to Playlist</p>
                     </div> : null
             }
             <div className="card__description margin-tb--small">
@@ -77,7 +75,6 @@ function VideoCard({ video, removeHandler, showRemove}) {
             </div>
             
         </div> 
-        <AddtoPlaylistModal video={video} showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )
 }
