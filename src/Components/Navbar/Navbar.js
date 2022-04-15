@@ -46,9 +46,7 @@ function Navbar({ onMenuClick }) {
     }
 
     const SearchVideos = filterVideoBySearch(videoState.videos, search)
-
-    console.log(SearchVideos)
-  
+    
     return (
       <header>
           <div className="navbar__container--plain padding-tb--medium">
