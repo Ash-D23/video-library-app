@@ -16,11 +16,8 @@ export const CalculateTimeDifference = (date) => {
         return `${originalDate.toLocaleString('default', { month: 'long' })} ${originalYear}`
     }
 
-    const originalDay = originalDate.getDay()
-    const currentDay = currentDate.getDay()
-
-    if(currentDay - originalDay !== 0){
-        return `${currentDay - originalDay} days ago`
+    if( currentDate.getDate() - originalDate.getDate() !== 0){
+        return `${currentDate.getDate() - originalDate.getDate() } days ago`
     }
 
     const originalHours = originalDate.getHours()
