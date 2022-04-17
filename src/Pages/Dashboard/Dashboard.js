@@ -6,7 +6,7 @@ function Dashboard() {
 
   const { filteredvideo, videoState } = useVideo()
   
-  return videoState.isLoading ? <Loader /> : (
+  return videoState.isLoading ? <div className='videolist--loading'><Loader /></div> : (
     <div className="main">
       <CategoryChips />
       <VideoList videos={filteredvideo} />

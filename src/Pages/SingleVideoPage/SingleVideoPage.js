@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Loader, Notes, AddtoPlaylistModal } from '../../Components';
 import { useAuthContext, usePlaylist } from '../../Context';
+import { FormattedDate } from '../../Utilities';
 import './SingleVideoPage.css';
 
 function SingleVideoPage() {
@@ -10,6 +11,8 @@ function SingleVideoPage() {
   const [singlevideo, setsinglevideo] = useState({})
   const [showModal, setshowModal] = useState(false)
   const [isLoading, setisLoading] = useState(true)
+
+  const params = useParams()
 
   const { user } = useAuthContext()
 
@@ -26,10 +29,6 @@ function SingleVideoPage() {
     }
   }
 
-  useEffect(() => {
-    getSingleVideo()
-  }, [])
-
   const onAddtoPlaylist = () => {
     if(!user){
       navigate('/login')
@@ -37,8 +36,6 @@ function SingleVideoPage() {
     }
     setshowModal(true)
   }
-
-  const params = useParams()
 
   const { addtoLikes, removeFromLikes, isVideoInLikes,
     addtoWatchLater, removeFromWatchLater, isVideoInWatchLater } = usePlaylist()
@@ -62,6 +59,12 @@ function SingleVideoPage() {
     }
     checkVideoInWatchLater ? removeFromWatchLater(singlevideo?._id) : addtoWatchLater(singlevideo)
   }
+
+  useEffect(() => {
+    getSingleVideo()
+  }, [params])
+
+  const videoDate = FormattedDate(new Date(singlevideo?.createDate))
 
   return isLoading ? <Loader /> : (
     <div className='single-video__container'>
@@ -89,7 +92,7 @@ function SingleVideoPage() {
                     </div>
                   </div>
                   <div>
-                    Views | 4 hous ago
+                    {videoDate}
                   </div>
                 </div>
             </div>

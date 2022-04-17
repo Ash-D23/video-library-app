@@ -20,7 +20,7 @@ function PlaylistPage() {
       </div>
       {playlistState.playlists.length === 0 ? (
         <div className='empty-list--container'>
-          <img src="/Images/empty.svg" />
+          <img src="/Images/empty.svg" alt="not found" />
           <h2 className='text--center padding--medium'>No Playlist Found</h2>
         </div>
       ) : null}

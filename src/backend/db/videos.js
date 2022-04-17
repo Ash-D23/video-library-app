@@ -12,6 +12,7 @@ export const videos = [
     creator: "Jack Edits",
     category: 'Editing',
     duration: '3 min',
+    createDate: new Date('4/13/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -22,6 +23,7 @@ export const videos = [
     creator: "Anonymous",
     category: 'Editing',
     duration: '3 min',
+    createDate: new Date('4/15/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -32,6 +34,7 @@ export const videos = [
     creator: "Anonymous",
     category: 'Editing',
     duration: '3 min',
+    createDate: new Date('4/3/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -42,6 +45,7 @@ export const videos = [
     creator: "Jack Edits",
     category: 'Editing',
     duration: '3 min',
+    createDate: new Date('3/24/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -52,6 +56,7 @@ export const videos = [
     creator: "Soham Shah",
     category: 'Transitions',
     duration: '3 min',
+    createDate: new Date('2/13/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -62,6 +67,7 @@ export const videos = [
     creator: "CinemaLover",
     category: 'Cinematics',
     duration: '3 min',
+    createDate: new Date('1/10/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -72,6 +78,7 @@ export const videos = [
     creator: "Soham Shah",
     category: 'Videography',
     duration: '3 min',
+    createDate: new Date('12/15/2021'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -82,6 +89,7 @@ export const videos = [
     creator: "Soham Shah",
     category: 'Transitions',
     duration: '3 min',
+    createDate: new Date('11/31/2021'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -92,6 +100,7 @@ export const videos = [
     creator: "Soham Shah",
     category: 'Videography',
     duration: '3 min',
+    createDate: new Date('10/13/2021'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
   },
   {
@@ -100,6 +109,7 @@ export const videos = [
     creator: "Sentdex",
     category: 'Transitions',
     duration: '3 min',
+    createDate: new Date('1/1/2022'),
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY',
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",

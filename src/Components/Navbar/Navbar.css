@@ -74,10 +74,33 @@
 
 .search__items{
     width: 100%;
-    height: 200px;
-    background-color: grey;
+    min-height: 4rem;
+    max-height: 40rem;
+    background-color: #f4f4f5;
     position: absolute;
     display: none;
+    margin-top: var(--margin-small);
+    padding-top: var(--padding-small);
+    z-index: 4;
+    overflow-y: auto;
+    border: 1px solid var(--clr-grey);
+}
+
+.search__items--display{
+    display: block;
+}
+
+.search__items--mobiledisplay{
+    display: none;
+}
+
+.search__items--list{
+    padding: var(--padding-small);
+}
+
+.search__items--list:hover{
+    cursor: pointer;
+    background-color: var(--clr-grey);
 }
 
 .video--mobile{
@@ -172,4 +195,11 @@
         display: block;
     }
 
+    .search__items--mobiledisplay{
+        display: block;
+    }
+
+    .search__items{
+        margin-top: 0;
+    }
 }

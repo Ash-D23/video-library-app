@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext, usePlaylist } from '../../Context';
-import { AddtoPlaylistModal } from '../AddtoPlaylistModal/AddtoPlaylistModal';
+import { CalculateTimeDifference } from '../../Utilities';
 import './VideoCard.css';
 
-function VideoCard({ video, removeHandler, showRemove}) {
+function VideoCard({ video, removeHandler, showRemove, showPlaylist}) {
 
-  const { title, creator, _id } = video;
+  const { title, creator, createDate, _id } = video;
 
   const [showMenu, setshowMenu] = useState(false)
-  const [showModal, setshowModal] = useState(false)
 
   const { user } = useAuthContext()
 
@@ -35,22 +34,22 @@ function VideoCard({ video, removeHandler, showRemove}) {
     navigate("/video/"+_id)
   }
 
-  const showPlaylist = () => {
+  const handleshowPlaylist = () => {
     if(!user){
         navigate("/login")
         return
     }
     setshowMenu(false)
-    setshowModal(true)
+    showPlaylist(video)
   }
+
+  const dateDifference = CalculateTimeDifference(createDate)
   
   return (
     <div  className="card card--video margin--medium container--relative">
         <div onClick={handleClick} className="card__image--container container--relative badge-content">
-            <img  className="card__image" src="/Images/video.jpg" />
-            
+            <img  className="card__image" src="/Images/video.jpg" alt="thumbnail" />
             <div className='video-image--overlay'>
-
             </div>
             <div className="video--play">
                 <i className="fab fa-youtube text--large"></i>
@@ -71,15 +70,15 @@ function VideoCard({ video, removeHandler, showRemove}) {
                         </p> : <p onClick={toggleWatchLater} className='margin-bottom--medium'>
                             <i className="far fa-trash-alt margin-lr--small"></i>Watch Later
                         </p> }
-                        <p onClick={showPlaylist}><i className="fas fa-list margin-lr--small"></i>Add to Playlist</p>
+                        <p onClick={handleshowPlaylist}><i className="fas fa-list margin-lr--small"></i>Add to Playlist</p>
                     </div> : null
             }
-            <div className="card__description margin-tb--small">
+            <div className="container__flex--spacebetween container__flex--wrap card__description margin-tb--small">
                 <p className="clr--grey">{creator}</p>
+                <p className='clr--grey'>{dateDifference}</p>
             </div>
             
         </div> 
-        <AddtoPlaylistModal video={video} showModal={showModal} closeModal={() => setshowModal(false)} />
     </div>
   )
 }

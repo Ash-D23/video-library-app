@@ -12,7 +12,7 @@ function PlaylistCard({ playlist: { title, _id, description, videos } }) {
   return (
     <div className="playlist-card__container pointer margin--medium">
       <div onClick={()=>navigate('/explore/playlist/'+_id)} className='playlist-card__image'>
-        <img src="/Images/list.svg" />
+        <img src="/Images/list.svg" alt="playlist" />
       </div>
       <div className='playlist-card__body'>
         <div onClick={()=>navigate('/explore/playlist/'+_id)} >
