@@ -48,7 +48,7 @@ function VideoCard({ video, removeHandler, showRemove, showPlaylist}) {
   return (
     <div  className="card card--video margin--medium container--relative">
         <div onClick={handleClick} className="card__image--container container--relative badge-content">
-            <img  className="card__image" src="/Images/video.jpg" />
+            <img  className="card__image" src="/Images/video.jpg" alt="thumbnail" />
             <div className='video-image--overlay'>
             </div>
             <div className="video--play">

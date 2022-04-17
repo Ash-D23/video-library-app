@@ -20,7 +20,7 @@ function VideoList({ videos, showRemove, removeHandler }) {
       })}
       {videos.length === 0 ? (
         <div className='empty-list--container'>
-          <img src="/Images/blank.svg" />
+          <img src="/Images/blank.svg" alt="not found" />
           <h2 className='text--center padding--medium'>No Items Found</h2>
         </div>
       ) : null}
