@@ -21,3 +21,9 @@
 .pointer{
     cursor: pointer;
 }
+
+.videolist--loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
