@@ -41,16 +41,30 @@
     max-width: 30rem;
 }
 
-.playlist__body .playlist--item:first-child{
-    border-top: 1px solid var(--clr-secondary);
-}
-
 .addPlaylist .modal__body{
-    max-height: 20rem;
+    max-height: 25rem;
 }
 
 .addPlaylist{
     z-index: 5;
+}
+
+.playlist__input--container{
+    display: flex;
+    width: 100%;
+}
+
+.playlist__input{
+    flex-grow: 1;
+    width: 10rem;
+    border: none;
+    border-bottom: 1px solid var(--clr-secondary);
+    padding: var(--padding-small);
+    font-size: 1.8rem;
+}
+
+.playlist__input:focus{
+    outline: none;
 }
 
 @media only screen and (max-width: 600px){

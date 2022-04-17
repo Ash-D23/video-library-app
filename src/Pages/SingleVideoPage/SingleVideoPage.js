@@ -76,7 +76,7 @@ function SingleVideoPage() {
                 <div className="single-video--actions">
                   <div className="single-video--actions--container">
                     <div onClick={toggleLike} className={`single-video--action ${checkVideoInLikes ? 'video--active' : null}`}>
-                      <i className="far fa-thumbs-up"></i>
+                      { checkVideoInLikes ? <i className="fas fa-thumbs-up"></i> : <i className="far fa-thumbs-up"></i>}
                       <p className="margin-left--small">Like</p>
                     </div>
                     <div onClick={toggleWatchLater} className={`single-video--action ${checkVideoInWatchLater ? 'video--active' : null}`}>
