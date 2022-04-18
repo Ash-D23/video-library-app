@@ -49,7 +49,7 @@ function CreatePlaylistModal({ showModal, closeModal}) {
   }
 
   return (
-    <div className={`modal__overlay ${showModal ? '' : 'hide'}`}>
+    <div className={`modal__overlay createPlaylistModal ${showModal ? '' : 'hide'}`}>
       <div className="modal__container">
           <div className="modal__header container__flex margin--medium">
               <h3 className="text--large">Create Playlist</h3>
