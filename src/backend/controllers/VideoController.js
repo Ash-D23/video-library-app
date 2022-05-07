@@ -10,9 +10,17 @@ import { Response } from "miragejs";
  * send GET Request at /api/videos
  * */
 
-export const getAllVideosHandler = function () {
+export const getAllVideosHandler = function (schema, request) {
+  const { limit, page } = request.params;
+
   try {
-    return new Response(200, {}, { videos: this.db.videos });
+    if(!limit || !page){
+      return new Response(200, {}, { videos: this.db.videos });
+    }else{
+      const startIndex = Number(limit)*Number(page-1)
+      const endIndex = startIndex + limit
+      return new Response(200, {}, { videos: this.db.videos.slice(startIndex, endIndex) });
+    }
   } catch (error) {
     return new Response(
       500,
