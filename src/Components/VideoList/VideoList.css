@@ -1,3 +1,12 @@
 .video__list--container{
     padding-bottom: 3rem;
 }
+
+.video__actions--container{
+    width: 100%;
+    height: 10rem;
+}
+
+.video--full{
+    width: 100%;
+}
