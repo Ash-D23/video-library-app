@@ -48,8 +48,14 @@ function CreatePlaylistModal({ showModal, closeModal}) {
     
   }
 
+  const handleModalClickOutside = (e) => {
+    if(e.target.id === "modal--outside" ){
+      handlecloseModal()
+    }
+  }
+
   return (
-    <div className={`modal__overlay createPlaylistModal ${showModal ? '' : 'hide'}`}>
+    <div id="modal--outside" onClick={handleModalClickOutside} className={`modal__overlay createPlaylistModal ${showModal ? '' : 'hide'}`}>
       <div className="modal__container">
           <div className="modal__header container__flex margin--medium">
               <h3 className="text--large">Create Playlist</h3>

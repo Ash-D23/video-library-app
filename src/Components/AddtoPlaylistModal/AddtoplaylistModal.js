@@ -30,8 +30,14 @@ function AddtoPlaylistModal({ showModal, closeModal, video}) {
     setPlaylistInput('')
   }
 
+  const handleModalClickOutside = (e) => {
+    if(e.target.id === "modal--outside" ){
+      handleClose()
+    }
+  }
+
   return (
-    <div className={`modal__overlay addPlaylist ${showModal ? '' : 'hide'}`}>
+    <div id="modal--outside" onClick={handleModalClickOutside} className={`modal__overlay addPlaylist ${showModal ? '' : 'hide'}`}>
       <div className="modal__container">
       <div className="modal__header container__flex--center margin--medium">
               <h3 className="text--large">Add to Playlist</h3>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext, useVideo } from '../../Context';
 import './Navbar.css';
@@ -7,8 +7,37 @@ function Navbar({ onMenuClick }) {
   
     const [search, setsearch] = useState('')
     const [showSearchItems, setshowSearchItems] = useState(false)
+
+    const searchInput = useRef(null)
+    const searchInputMobile = useRef(null)
   
     let navigate = useNavigate()
+
+    const { user } = useAuthContext()
+
+    const { videoState } = useVideo();
+
+    useEffect(() => {
+      const closeSearchMenu = () => {
+        setsearch('')
+        setshowSearchItems(false)
+      }
+
+      const handleClickOutside = (e)=>{
+        const isClickedOutsideInput = (searchInput.current && searchInput.current.contains(e.target)) || 
+        (searchInputMobile.current && searchInputMobile.current.contains(e.target))
+        if(!isClickedOutsideInput){
+            closeSearchMenu()
+        }
+     }
+
+      document.body.addEventListener('click', handleClickOutside)
+
+      return () => {
+          document.body.removeEventListener('click', handleClickOutside)
+      }
+    }, [])
+    
   
     const searchHandler = (e) => {
         if(e.keyCode === 13){
@@ -22,10 +51,6 @@ function Navbar({ onMenuClick }) {
       setshowSearchItems(false)
       navigate(path)
     }
-
-    const { user } = useAuthContext()
-
-    const { videoState } = useVideo();
 
     const filterVideoBySearch = (videos, search) => {
         if(search === null){
@@ -70,6 +95,7 @@ function Navbar({ onMenuClick }) {
                         <input 
                         onChange={(e)=>setsearch(e.target.value)} 
                         onFocus={() => setshowSearchItems(true)}
+                        ref={searchInput}
                         value={search} 
                         className="search__input" 
                         placeholder="Search" 
@@ -110,6 +136,7 @@ function Navbar({ onMenuClick }) {
                       onChange={(e)=>setsearch(e.target.value)} 
                       value={search} 
                       onFocus={() => setshowSearchItems(true)}
+                      ref={searchInputMobile}
                       className="search__input" 
                       placeholder="Search" 
                       type="text" 

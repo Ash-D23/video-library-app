@@ -26,6 +26,7 @@ function SingleVideoPage() {
     }catch(err){
       console.error(err)
       setisLoading(false)
+      navigate('/notfound')
     }
   }
 
