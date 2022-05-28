@@ -14,16 +14,16 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Transitions",
-    imgurl: '/Images/video.jpg',
+    imgurl: '/Images/video1.jpg',
   },
   {
     _id: uuid(),
     categoryName: "Cinematics",
-    imgurl: '/Images/video.jpg'
+    imgurl: '/Images/video4.jpg'
   },
   {
     _id: uuid(),
     categoryName: "Videography",
-    imgurl: '/Images/video.jpg'
+    imgurl: '/Images/video3.jpg'
   }
 ];
