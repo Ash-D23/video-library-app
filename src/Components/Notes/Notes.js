@@ -21,6 +21,10 @@ function Notes({ videoId }) {
   }
 
   const handleSubmit = async () => {
+    if(!inputNote){
+      toasterror("Please Enter a Note")
+      return
+    }
     const noteObj = { note: inputNote, videoId}
     setloading(true)
     try{
