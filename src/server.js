@@ -30,6 +30,7 @@ import {
   getNotesbyVideo,
   addNotes,
   removeNote,
+  EditNotes
 } from "./backend/controllers/NotesController";
 import {
   getWatchLaterVideosHandler,
@@ -109,6 +110,7 @@ export function makeServer({ environment = "development" } = {}) {
       this.get("/notes", getNotes.bind(this));
       this.get("/notes/:videoId", getNotesbyVideo.bind(this));
       this.post("/addNotes", addNotes.bind(this));
+      this.post("/editNote/:NoteId", EditNotes.bind(this));
       this.delete("/removeNote/:Id", removeNote.bind(this));
 
       // likes routes (private)

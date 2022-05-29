@@ -4,6 +4,7 @@ import { Loader } from '../Loader/Loader';
 import { useAuthContext } from '../../Context';
 import { toasterror, toastsuccess } from '../../Utilities';
 import { Link } from 'react-router-dom';
+import { NotesItem } from '../NotesItem/NotesItem';
 
 function Notes({ videoId }) {
 
@@ -50,6 +51,20 @@ function Notes({ videoId }) {
     }
   }
 
+  const editNote = async (_id, note) => {
+    setloading(true)
+    try{
+      let res = await axios.post('/api/editNote/'+_id, { noteData: note }, config)
+      setnotes(notes.map((item) => item._id === _id ? note : item))
+      toastsuccess("Note Edited")
+    }catch(err){
+      console.error(err)
+      toasterror("An Error Occured")
+    }finally{
+      setloading(false)
+    }
+  }
+ 
   const getNotes = async () => {
     setloading(true)
     try{
@@ -84,11 +99,8 @@ function Notes({ videoId }) {
             </div> 
             { loading && <Loader />}
             <div className="padding-top--small">
-              {notes?.map((item)=>{
-                return (<div key={item._id} className="container__flex--spacebetween margin-tb--large">
-                  <p className="note--content">{item.note}</p>
-                  <i onClick={()=>removeNote(item._id)} className="far fa-trash-alt del--icon margin-left--small"></i>
-              </div>)
+              {notes?.map((item, index)=>{
+                return (<NotesItem key={item._id} item={item} index={index} removeNote={removeNote} editNote={editNote} />)
               })}
             </div>
         </div>

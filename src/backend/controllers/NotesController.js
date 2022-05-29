@@ -68,6 +68,35 @@ export const getNotes = function (schema, request) {
     }
   };
 
+  export const EditNotes = function (schema, request) {
+    const user = requiresAuth.call(this, request);
+    try {
+      if (!user?._id) {
+        new Response(
+          404,
+          {},
+          {
+            errors: ["The email you entered is not Registered. Not Found error"],
+          }
+        );
+      }
+      const id = request.params.NoteId;
+      const notes = schema.users.findBy({ _id: user?._id }).notes;
+      const { noteData } = JSON.parse(request.requestBody);
+
+      this.db.users.update({ _id: user?._id }, { notes: notes.map((item) => item._id === id ? noteData : item ) });
+      return new Response(201, {}, { notes: schema.users.notes });
+    } catch (error) {
+      return new Response(
+        500,
+        {},
+        {
+          error,
+        }
+      );
+    }
+  };
+
   export const removeNote = function (schema, request) {
     const user = requiresAuth.call(this, request);
     try {

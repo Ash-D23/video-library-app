@@ -1,0 +1,10 @@
+.noteItem{
+    background-color: var(--clr-light);
+    padding: var(--padding-medium);
+    color: var(--text-clr-secondary);
+    border-radius: 15px
+}
+
+.noteItem textarea{
+    height: auto
+}
