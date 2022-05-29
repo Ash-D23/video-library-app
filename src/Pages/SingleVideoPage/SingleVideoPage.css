@@ -51,22 +51,18 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .note__input{
-    padding: var(--padding-small);
-    font-size: var(--text-medium);
-    border: none;
-    border-bottom: 1px solid var(--clr-grey);
-    width: 50%;
-    flex-grow: 1;
+   height: auto;
+   border: 1px solid var(--clr-grey);
 }
 
 .note__input:focus{
-    outline: none;
+    border: 1px solid var(--clr-light);
+    outline: none
 }
-
 .note--content{
     flex-grow: 1;
 }

@@ -8,3 +8,7 @@
 .noteItem textarea{
     height: auto
 }
+
+.noteItem textarea:focus{
+    outline: none
+}

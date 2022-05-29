@@ -94,7 +94,7 @@ function Notes({ videoId }) {
     <div className="notes--section">
         <div className="notes__container">
             <div className="note__input--container margin-tb--large">          
-                <input onChange={(e)=> setinputNote(e.target.value)} value={inputNote} className="note__input margin-right--medium" placeholder="Enter Note" />
+                <textarea rows="2" onChange={(e)=> setinputNote(e.target.value)} value={inputNote} className="note__input margin-bottom--medium" placeholder="Enter Note" />
                 <button onClick={handleSubmit} className="btn btn--secondary">Submit</button>
             </div> 
             { loading && <Loader />}
